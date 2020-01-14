@@ -1,0 +1,30 @@
+{
+	"name": "posterno/posterno-elementor",
+	"description": "Visually build your listings directory website with Posterno and Elementor.",
+	"type": "wordpress-plugin",
+	"keywords": [
+		"wordpress"
+	],
+	"homepage": "https://posterno.com",
+	"authors": [{
+		"name": "Posterno",
+		"email": "hello@posterno.com"
+	}],
+	"require": {
+		"php": ">=5.6",
+		"composer/installers": "~1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Posterno\\Elementor\\": "includes/classes/"
+		}
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+		"pressmodo/phpcs-config": "dev-master"
+	},
+	"scripts": {
+		"lint": "phpcs .",
+		"lint-fix": "phpcbf ."
+	}
+}
