@@ -10,6 +10,8 @@
 
 namespace Posterno\Elementor;
 
+use Posterno\Elementor\Elements\ListingsQuery;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -68,7 +70,7 @@ class Plugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'posterno-analytics' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'posterno-elementor' ), '0.1.0' );
 	}
 	/**
 	 * Disable un-serializing of the class.
@@ -79,7 +81,7 @@ class Plugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'posterno-analytics' ), '0.1.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'posterno-elementor' ), '0.1.0' );
 	}
 
 	/**
@@ -143,6 +145,8 @@ class Plugin {
 	 * @return void
 	 */
 	public function setup_files() {
+
+		require_once PNO_ELEMENTOR_PLUGIN_DIR . 'includes/actions.php';
 
 	}
 
