@@ -13,6 +13,7 @@ namespace Posterno\Elementor\Elements;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Plugin;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -207,7 +208,9 @@ class ListingsQuery extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		print_r( $settings );
+		Plugin::instance()->templates
+			->set_template_data( $settings )
+			->get_template_part( 'listings-query' );
 
 	}
 

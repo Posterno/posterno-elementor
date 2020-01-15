@@ -35,6 +35,13 @@ class Plugin {
 	private $file = '';
 
 	/**
+	 * Templates loader object.
+	 *
+	 * @var Templates
+	 */
+	public $templates;
+
+	/**
 	 * Setup the instance.
 	 *
 	 * @param string $file the plugin's file.
@@ -52,6 +59,8 @@ class Plugin {
 
 		self::$instance->setup_constants();
 		self::$instance->setup_files();
+
+		self::$instance->templates = new Templates();
 
 		// Return the instance.
 		return self::$instance;
