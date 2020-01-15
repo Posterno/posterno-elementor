@@ -125,7 +125,7 @@ class ListingsQuery extends Widget_Base {
 		);
 
 		$this->add_control(
-			'authors',
+			'query_authors',
 			[
 				'label'       => esc_html__( 'Authors', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
@@ -145,16 +145,6 @@ class ListingsQuery extends Widget_Base {
 					'disabled' => esc_html__( 'Disabled', 'posterno-elementor' ),
 				],
 				'default'  => 'disabled',
-			]
-		);
-
-		$this->add_control(
-			'query_authors',
-			[
-				'label'       => esc_html__( 'Authors', 'posterno-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'ID numbers', 'posterno-elementor' ),
-				'description' => esc_html__( 'Enter one or more users ID numbers separated by a comma to limit listings by specific authors only.', 'posterno-elementor' ),
 			]
 		);
 
