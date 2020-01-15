@@ -30,6 +30,10 @@ namespace Posterno\Elementor;
 
 defined( 'ABSPATH' ) || exit;
 
+if ( ! did_action( 'elementor/loaded' ) ) {
+	return;
+}
+
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 	require dirname( __FILE__ ) . '/vendor/autoload.php';
 }
