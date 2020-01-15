@@ -14,4 +14,100 @@
  * @package posterno-elementor
  */
 
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+$posts_per_page = isset( $data->posts_per_page ) ? absint( $data->posts_per_page ) : absint( pno_get_listings_results_per_page_options() );
+$featured       = isset( $data->show_featured ) && $data->show_featured === 'yes';
+$pagination     = isset( $data->pagination ) && $data->pagination === 'enabled';
+$layout         = isset( $_GET['layout'] ) ? pno_get_listings_results_active_layout() : ( isset( $data->layout_mode ) && array_key_exists( $data->layout_mode, pno_get_listings_layout_options() ) ? $data->layout_mode : pno_get_listings_results_active_layout() );
+$author_id      = isset( $data->query_authors ) && ! empty( $data->query_authors ) ? trim( explode( ',', $data->query_authors ) ) : false;
+
+$args = [
+	'post_type'         => 'listings',
+	'pno_search'        => true,
+	'is_listings_query' => true,
+	'posts_per_page'    => $posts_per_page,
+];
+
+// Add pagination support.
+if ( $pagination ) {
+	$args['paged'] = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+}
+
+// Add featured listings only support to the query.
+if ( $featured ) {
+	$args['meta_query'] = [
+		[
+			'key'   => '_listing_is_featured',
+			'value' => 'yes',
+		],
+	];
+}
+
+$i = '';
+
+/**
+ * Filter: allow developers to modify the WP_Query arguments for listings
+ * generated through the elementor block.
+ *
+ * @param array $args WP_Query arguments list.
+ * @param object $data attributes sent through the block.
+ * @return array
+ */
+$args = apply_filters( 'pno_listings_elementor_query', $args, $data );
+
+$query = new WP_Query( $args );
+
 ?>
+
+<div class="pno-block-listings-wrapper posterno-template">
+	<?php
+
+	if ( $query->have_posts() ) {
+
+		// Start opening the grid's container.
+		if ( $layout === 'grid' ) {
+			echo '<div class="card-deck">';
+		}
+
+		while ( $query->have_posts() ) {
+
+			$query->the_post();
+
+			posterno()->templates->get_template_part( 'listings/card', $layout );
+
+			// Continue the loop of grids containers.
+			if ( $layout === 'grid' ) {
+				$i++;
+				if ( $i % 3 == 0 ) {
+					echo '</div><div class="card-deck">';
+				}
+			}
+		}
+
+		// Close grid's container.
+		if ( $layout === 'grid' ) {
+			echo '</div>';
+		}
+
+		if ( $pagination ) {
+			posterno()->templates
+				->set_template_data(
+					[
+						'query' => $query,
+					]
+				)
+				->get_template_part( 'listings/results', 'footer' );
+		}
+
+		wp_reset_postdata();
+
+	} else {
+
+		posterno()->templates->get_template_part( 'listings/not-found' );
+
+	}
+
+	?>
+</div>
