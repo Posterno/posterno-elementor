@@ -14,6 +14,8 @@
  * @package posterno-elementor
  */
 
+use Posterno\Elementor\Helper;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -45,6 +47,25 @@ if ( $featured ) {
 	];
 }
 
+$taxonomies      = Helper::get_registered_taxonomies();
+$object_vars     = get_object_vars( $data );
+$taxonomy_filter = [];
+
+foreach ( $taxonomies as $tax_slug => $tax_name ) {
+	if ( isset( $object_vars[ "taxonomy_{$tax_slug}" ] ) && ! empty( $object_vars[ "taxonomy_{$tax_slug}" ] ) ) {
+		$taxonomy_terms    = $object_vars[ "taxonomy_{$tax_slug}" ];
+		$taxonomy_filter[] = [
+			'taxonomy' => $tax_slug,
+			'field'    => 'term_id',
+			'terms'    => $taxonomy_terms,
+		];
+	}
+}
+
+if ( ! empty( $taxonomy_filter ) ) {
+	$args['tax_query'] = $taxonomy_filter;
+}
+
 $i = '';
 
 /**
@@ -53,9 +74,10 @@ $i = '';
  *
  * @param array $args WP_Query arguments list.
  * @param object $data attributes sent through the block.
+ * @param string $filter_id optional id provided by the widget.
  * @return array
  */
-$args = apply_filters( 'pno_listings_elementor_query', $args, $data );
+$args = apply_filters( 'pno_listings_elementor_query', $args, $data, $data->filter_id );
 
 $query = new WP_Query( $args );
 

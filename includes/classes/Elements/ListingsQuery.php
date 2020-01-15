@@ -13,6 +13,7 @@ namespace Posterno\Elementor\Elements;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Helper;
 use Posterno\Elementor\Plugin;
 
 // Exit if accessed directly.
@@ -87,7 +88,7 @@ class ListingsQuery extends Widget_Base {
 			)
 		);
 
-		foreach ( $this->get_registered_taxonomies() as $slug => $name ) {
+		foreach ( Helper::get_registered_taxonomies() as $slug => $name ) {
 
 			$this->add_control(
 				"taxonomy_{$slug}",
@@ -201,30 +202,6 @@ class ListingsQuery extends Widget_Base {
 		Plugin::instance()->templates
 			->set_template_data( $settings )
 			->get_template_part( 'listings-query' );
-
-	}
-
-	/**
-	 * Get the list of registered taxonomies for the control.
-	 *
-	 * @return array
-	 */
-	private function get_registered_taxonomies() {
-
-		$list = [];
-
-		$taxonomies = get_object_taxonomies( 'listings', 'objects' );
-
-		if ( ! empty( $taxonomies ) ) {
-			foreach ( $taxonomies as $id => $taxonomy ) {
-				if ( in_array( $id, [ 'pno-review-attribute', 'pno-review-rating-label' ], true ) ) {
-					continue;
-				}
-				$list[ $id ] = $taxonomy->label;
-			}
-		}
-
-		return $list;
 
 	}
 
