@@ -23,7 +23,7 @@ $posts_per_page = isset( $data->posts_per_page ) ? absint( $data->posts_per_page
 $featured       = isset( $data->show_featured ) && $data->show_featured === 'yes';
 $pagination     = isset( $data->pagination ) && $data->pagination === 'enabled';
 $layout         = isset( $_GET['layout'] ) ? pno_get_listings_results_active_layout() : ( isset( $data->layout_mode ) && array_key_exists( $data->layout_mode, pno_get_listings_layout_options() ) ? $data->layout_mode : pno_get_listings_results_active_layout() );
-$author_id      = isset( $data->query_authors ) && ! empty( $data->query_authors ) ? trim( explode( ',', $data->query_authors ) ) : false;
+$author_ids      = isset( $data->query_authors ) && ! empty( $data->query_authors ) ? array_filter( explode( ',', trim( $data->query_authors ) ) ) : false;
 
 $args = [
 	'post_type'         => 'listings',
@@ -65,6 +65,13 @@ foreach ( $taxonomies as $tax_slug => $tax_name ) {
 if ( ! empty( $taxonomy_filter ) ) {
 	$args['tax_query'] = $taxonomy_filter;
 }
+
+// Add specific author support to the query.
+if ( $author_ids ) {
+	$args['author__in'] = $author_ids;
+}
+
+var_dump( $author_ids );
 
 $i = '';
 
