@@ -8,6 +8,7 @@
  * @since       1.0.0
  */
 
+use Posterno\Elementor\Cache;
 use Posterno\Elementor\Elements\ListingsQuery;
 
 // Exit if accessed directly.
@@ -22,10 +23,10 @@ add_action(
 
 		$elements_manager->add_category(
 			'posterno',
-			[
+			array(
 				'title' => esc_html__( 'Listings', 'posterno-elementor' ),
 				'icon'  => 'fa fa-plug',
-			]
+			)
 		);
 
 	}
@@ -42,3 +43,20 @@ add_action(
 
 	}
 );
+
+/**
+ * Purge the terms cache when updating, creating or deleting terms assigned to the listings post type.
+ *
+ * @param string $term_id id of the term.
+ * @param string $tt_id id of the term.
+ * @param string $taxonomy taxonomy of the term.
+ * @return void
+ */
+function pno_elementor_purge_terms_cache( $term_id, $tt_id, $taxonomy ) {
+	if ( array_key_exists( $taxonomy, get_object_taxonomies( 'listings', 'objects' ) ) ) {
+		Cache::purge_taxonomy_cache( $taxonomy );
+	}
+}
+add_action( 'edited_term', 'pno_elementor_purge_terms_cache', 10, 3 );
+add_action( 'create_term', 'pno_elementor_purge_terms_cache', 10, 3 );
+add_action( 'delete_term', 'pno_elementor_purge_terms_cache', 10, 3 );

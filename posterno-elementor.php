@@ -56,7 +56,7 @@ add_action(
 		if ( $requirements_check->passes() ) {
 
 			$addon = Plugin::instance( __FILE__ );
-			add_action( 'plugins_loaded', [ $addon, 'textdomain' ], 11 );
+			add_action( 'plugins_loaded', array( $addon, 'textdomain' ), 11 );
 
 		}
 		unset( $requirements_check );

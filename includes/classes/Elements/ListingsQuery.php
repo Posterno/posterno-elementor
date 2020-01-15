@@ -12,6 +12,7 @@ namespace Posterno\Elementor\Elements;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Posterno\Elementor\Cache;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -66,7 +67,7 @@ class ListingsQuery extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'posterno' ];
+		return array( 'posterno' );
 	}
 
 	/**
@@ -79,11 +80,26 @@ class ListingsQuery extends Widget_Base {
 
 		$this->start_controls_section(
 			'query_settings',
-			[
+			array(
 				'label' => __( 'Query settings', 'posterno-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
-			]
+			)
 		);
+
+		foreach ( $this->get_registered_taxonomies() as $slug => $name ) {
+
+			$this->add_control(
+				"taxonomy_{$slug}",
+				[
+					'label'       => esc_html( $name ),
+					'type'        => Controls_Manager::SELECT2,
+					'multiple'    => true,
+					'options'     => Cache::get_cached_terms( $slug ),
+					'description' => esc_html__( 'Select one or more term to adjust the query.' ),
+				]
+			);
+
+		}
 
 		$this->end_controls_section();
 
@@ -100,6 +116,30 @@ class ListingsQuery extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		print_r( $settings );
+
+	}
+
+	/**
+	 * Get the list of registered taxonomies for the control.
+	 *
+	 * @return array
+	 */
+	private function get_registered_taxonomies() {
+
+		$list = [];
+
+		$taxonomies = get_object_taxonomies( 'listings', 'objects' );
+
+		if ( ! empty( $taxonomies ) ) {
+			foreach ( $taxonomies as $id => $taxonomy ) {
+				if ( in_array( $id, [ 'pno-review-attribute', 'pno-review-rating-label' ], true ) ) {
+					continue;
+				}
+				$list[ $id ] = $taxonomy->label;
+			}
+		}
+
+		return $list;
 
 	}
 
