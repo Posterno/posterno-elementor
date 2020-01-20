@@ -40,7 +40,7 @@ if ( ! is_array( $terms ) || empty( $terms ) ) {
 
 	<?php foreach ( $terms as $term ) : ?>
 
-		<a href="<?php echo esc_url( get_term_link( $listing_type ) ); ?>" class="badge badge-secondary pt-2 pr-3 pl-3 pb-2 mb-1 ml-1 text-white font-weight-normal"><?php echo esc_html( $term->name ); ?></a>
+		<a href="<?php echo esc_url( get_term_link( $term ) ); ?>" class="badge badge-secondary pt-2 pr-3 pl-3 pb-2 mb-1 ml-1 text-white font-weight-normal"><?php echo esc_html( $term->name ); ?></a>
 
 	<?php endforeach; ?>
 
