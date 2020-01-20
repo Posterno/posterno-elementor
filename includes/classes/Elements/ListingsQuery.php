@@ -210,9 +210,19 @@ class ListingsQuery extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		Plugin::instance()->templates
-			->set_template_data( $settings )
-			->get_template_part( 'listings-query' );
+		if ( in_array( $settings['layout_mode'], [ 'grid', 'list' ], true ) ) {
+
+			Plugin::instance()->templates
+				->set_template_data( $settings )
+				->get_template_part( 'listings-query' );
+
+		} else {
+
+			Plugin::instance()->templates
+				->set_template_data( $settings )
+				->get_template_part( 'listings-query-' . $settings['layout_mode'] );
+
+		}
 
 	}
 
