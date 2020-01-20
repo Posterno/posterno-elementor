@@ -171,16 +171,27 @@ class ListingsQuery extends Widget_Base {
 			)
 		);
 
+		/**
+		 * Filter: allow definition of additional layouts for the elementor listings query widget.
+		 *
+		 * @param array $layouts list of registered layouts.
+		 * @return array
+		 */
+		$layout_options = apply_filters(
+			'pno_elementor_listings_query_layouts',
+			[
+				'grid' => esc_html__( 'Grid', 'posterno-elementor' ),
+				'list' => esc_html__( 'List', 'posterno-elementor' ),
+			]
+		);
+
 		$this->add_control(
 			'layout_mode',
 			[
 				'label'    => esc_html__( 'Layout style', 'posterno-elementor' ),
 				'type'     => Controls_Manager::SELECT,
 				'multiple' => true,
-				'options'  => [
-					'grid' => esc_html__( 'Grid', 'posterno-elementor' ),
-					'list' => esc_html__( 'List', 'posterno-elementor' ),
-				],
+				'options'  => $layout_options,
 				'default'  => 'list',
 			]
 		);
