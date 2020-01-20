@@ -71,8 +71,6 @@ if ( $author_ids ) {
 	$args['author__in'] = $author_ids;
 }
 
-var_dump( $author_ids );
-
 $i = '';
 
 /**
