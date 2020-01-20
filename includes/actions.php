@@ -9,6 +9,7 @@
  */
 
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Elements\ListingCard;
 use Posterno\Elementor\Elements\ListingsQuery;
 use Posterno\Elementor\Elements\TermsList;
 
@@ -42,6 +43,7 @@ add_action(
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ListingsQuery() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new TermsList() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ListingCard() );
 
 	}
 );
