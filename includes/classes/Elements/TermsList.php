@@ -220,7 +220,41 @@ class TermsList extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		print_r( $settings );
+		$taxonomy = sanitize_text_field( $settings['taxonomy_id'] );
+		$layout   = sanitize_text_field( $settings['layout_mode'] );
+
+		if ( $layout === 'default' ) {
+
+			$template_name = false;
+
+			switch ( $taxonomy ) {
+				case 'listings-categories':
+					$template_name = 'terms-list-listings-categories';
+					break;
+				case 'listings-locations':
+					$template_name = 'terms-list-listings-locations';
+					break;
+				case 'listings-types':
+					$template_name = 'terms-list-listings-types';
+					break;
+				default:
+					$template_name = 'terms-list-default';
+					break;
+			}
+
+			Plugin::instance()->templates
+				->set_template_data( $settings )
+				->get_template_part( $template_name );
+
+		} else {
+
+			$template_name = "terms-list-{$layout}";
+
+			Plugin::instance()->templates
+				->set_template_data( $settings )
+				->get_template_part( $template_name );
+
+		}
 
 	}
 
