@@ -45,6 +45,10 @@ add_action(
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new TermsList() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ListingCard() );
 
+		if ( class_exists( '\Posterno\Search\Plugin' ) ) {
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\SearchFacet() );
+		}
+
 	}
 );
 
