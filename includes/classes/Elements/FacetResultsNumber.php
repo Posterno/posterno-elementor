@@ -110,6 +110,8 @@ class FacetResultsNumber extends Widget_Base {
 
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 
+			echo esc_html( $this->get_title() );
+
 			posterno()->templates
 				->set_template_data(
 					[
