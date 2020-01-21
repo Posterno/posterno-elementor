@@ -28,9 +28,16 @@ function pno_elementor_dashboard_locations( $manager ) {
 		}
 
 		$manager->register_location(
-			"dashboard-{$section_key}",
+			"dashboard-before-{$section_key}",
 			array(
-				'label' => sprintf( esc_html__( 'Listings dashboard page: %s' ), $section_name ),
+				'label' => sprintf( esc_html__( 'Listings dashboard page: %s (before)' ), $section_name ),
+			)
+		);
+
+		$manager->register_location(
+			"dashboard-after-{$section_key}",
+			array(
+				'label' => sprintf( esc_html__( 'Listings dashboard page: %s (after)' ), $section_name ),
 			)
 		);
 

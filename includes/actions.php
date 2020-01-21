@@ -95,9 +95,3 @@ function pno_elementor_register_builder_conditions( $manager ) {
 
 }
 add_action( 'elementor/theme/register_conditions', 'pno_elementor_register_builder_conditions' );
-
-add_action( 'pno_dashboard_tab_content_dashboard', function() {
-
-	elementor_theme_do_location( 'dashboard-dashboard' );
-
-} );
