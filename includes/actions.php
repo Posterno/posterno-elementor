@@ -47,6 +47,7 @@ add_action(
 
 		if ( class_exists( '\Posterno\Search\Plugin' ) ) {
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\SearchFacet() );
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\FacetPagination() );
 		}
 
 	}
