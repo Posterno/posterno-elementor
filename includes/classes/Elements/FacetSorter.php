@@ -80,7 +80,7 @@ class FacetSorter extends Widget_Base {
 		$this->start_controls_section(
 			'faceted_settings',
 			array(
-				'label' => __( 'Pagination settings', 'posterno-elementor' ),
+				'label' => __( 'Settings', 'posterno-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
