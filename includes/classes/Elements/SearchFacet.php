@@ -87,11 +87,11 @@ class SearchFacet extends Widget_Base {
 
 		$this->add_control(
 			'facet_id',
-			[
+			array(
 				'label'   => esc_html__( 'Facet ID Number', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT2,
 				'options' => $this->get_facets(),
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -105,7 +105,7 @@ class SearchFacet extends Widget_Base {
 	 */
 	private function get_facets() {
 
-		$list = [];
+		$list = array();
 
 		$facets = \Posterno\Search\Helper::get_facets();
 
@@ -141,10 +141,10 @@ class SearchFacet extends Widget_Base {
 
 			posterno()->templates
 				->set_template_data(
-					[
+					array(
 						'type'    => 'info',
 						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.' ),
-					]
+					)
 				)
 				->get_template_part( 'message' );
 

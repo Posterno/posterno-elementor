@@ -25,13 +25,13 @@ class Helper {
 	 */
 	public static function get_registered_taxonomies() {
 
-		$list = [];
+		$list = array();
 
 		$taxonomies = get_object_taxonomies( 'listings', 'objects' );
 
 		if ( ! empty( $taxonomies ) ) {
 			foreach ( $taxonomies as $id => $taxonomy ) {
-				if ( in_array( $id, [ 'pno-review-attribute', 'pno-review-rating-label' ], true ) ) {
+				if ( in_array( $id, array( 'pno-review-attribute', 'pno-review-rating-label' ), true ) ) {
 					continue;
 				}
 				$list[ $id ] = $taxonomy->label;

@@ -26,7 +26,7 @@ class Cache {
 	 */
 	public static function get_cached_terms( $taxonomy ) {
 
-		$types = [];
+		$types = array();
 
 		if ( $taxonomy === 'listings-types' ) {
 			return pno_get_listings_types_for_association();

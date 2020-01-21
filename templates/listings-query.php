@@ -24,13 +24,14 @@ $featured       = isset( $data->show_featured ) && $data->show_featured === 'yes
 $pagination     = isset( $data->pagination ) && $data->pagination === 'enabled';
 $layout         = isset( $_GET['layout'] ) ? pno_get_listings_results_active_layout() : ( isset( $data->layout_mode ) && array_key_exists( $data->layout_mode, pno_get_listings_layout_options() ) ? $data->layout_mode : pno_get_listings_results_active_layout() );
 $author_ids     = isset( $data->query_authors ) && ! empty( $data->query_authors ) ? array_filter( explode( ',', trim( $data->query_authors ) ) ) : false;
+$specific_ids   = isset( $data->limit_by_id ) && $data->limit_by_id === 'yes' && isset( $data->listings_ids ) && ! empty( $data->listings_ids ) ? array_filter( explode( ',', trim( $data->listings_ids ) ) ) : false;
 
-$args = [
+$args = array(
 	'post_type'         => 'listings',
 	'pno_search'        => true,
 	'is_listings_query' => true,
 	'posts_per_page'    => $posts_per_page,
-];
+);
 
 // Add pagination support.
 if ( $pagination ) {
@@ -39,26 +40,26 @@ if ( $pagination ) {
 
 // Add featured listings only support to the query.
 if ( $featured ) {
-	$args['meta_query'] = [
-		[
+	$args['meta_query'] = array(
+		array(
 			'key'   => '_listing_is_featured',
 			'value' => 'yes',
-		],
-	];
+		),
+	);
 }
 
 $taxonomies      = Helper::get_registered_taxonomies();
 $object_vars     = get_object_vars( $data );
-$taxonomy_filter = [];
+$taxonomy_filter = array();
 
 foreach ( $taxonomies as $tax_slug => $tax_name ) {
 	if ( isset( $object_vars[ "taxonomy_{$tax_slug}" ] ) && ! empty( $object_vars[ "taxonomy_{$tax_slug}" ] ) ) {
 		$taxonomy_terms    = $object_vars[ "taxonomy_{$tax_slug}" ];
-		$taxonomy_filter[] = [
+		$taxonomy_filter[] = array(
 			'taxonomy' => $tax_slug,
 			'field'    => 'term_id',
 			'terms'    => $taxonomy_terms,
-		];
+		);
 	}
 }
 
@@ -69,6 +70,11 @@ if ( ! empty( $taxonomy_filter ) ) {
 // Add specific author support to the query.
 if ( $author_ids ) {
 	$args['author__in'] = $author_ids;
+}
+
+// Limit query to specific ids only if enabled.
+if ( $specific_ids ) {
+	$args['post__in'] = array_map( 'trim', array_map( 'absint', $specific_ids ) );
 }
 
 $i = '';
@@ -121,9 +127,9 @@ $elementor_query = new WP_Query( $args );
 		if ( $pagination ) {
 			posterno()->templates
 				->set_template_data(
-					[
+					array(
 						'query' => $elementor_query,
-					]
+					)
 				)
 				->get_template_part( 'listings/results', 'footer' );
 		}

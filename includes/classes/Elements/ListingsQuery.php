@@ -92,73 +92,103 @@ class ListingsQuery extends Widget_Base {
 
 			$this->add_control(
 				"taxonomy_{$slug}",
-				[
+				array(
 					'label'       => esc_html( $name ),
 					'type'        => Controls_Manager::SELECT2,
 					'multiple'    => true,
 					'options'     => Cache::get_cached_terms( $slug ),
 					'description' => esc_html__( 'Select one or more term to adjust the query.', 'posterno-elementor' ),
-				]
+				)
 			);
 
 		}
 
 		$this->add_control(
 			'show_featured',
-			[
+			array(
 				'label'        => __( 'Featured listings only', 'posterno-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Yes', 'posterno-elementor' ),
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
-			]
+			)
 		);
 
 		$this->add_control(
 			'posts_per_page',
-			[
-				'label'   => esc_html__( 'Number', 'posterno-elementor' ),
+			array(
+				'label'   => esc_html__( 'Listings per page', 'posterno-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'step'    => 1,
 				'default' => 10,
-			]
+			)
+		);
+
+		$this->add_control(
+			'limit_by_id',
+			array(
+				'label'        => esc_html__( 'Limit query to specific listings', 'posterno-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'posterno-elementor' ),
+				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
+				'return_value' => 'yes',
+				'default'      => false,
+			)
+		);
+
+		$this->add_control(
+			'listings_ids',
+			array(
+				'label'       => esc_html__( 'Listings IDs', 'posterno-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => esc_html__( 'Example: 55, 98' ),
+				'conditions'  => array(
+					'terms' => array(
+						array(
+							'name'  => 'limit_by_id',
+							'value' => 'yes',
+						),
+					),
+				),
+				'description' => esc_html__( 'Enter one or more listing id number separated by a comma.', 'posterno-elementor' ),
+			)
 		);
 
 		$this->add_control(
 			'query_authors',
-			[
+			array(
 				'label'       => esc_html__( 'Authors', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'ID numbers', 'posterno-elementor' ),
 				'description' => esc_html__( 'Enter one or more users ID numbers separated by a comma to limit listings by specific authors only.', 'posterno-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'pagination',
-			[
+			array(
 				'label'    => esc_html__( 'Pagination', 'posterno-elementor' ),
 				'type'     => Controls_Manager::SELECT,
 				'multiple' => true,
-				'options'  => [
+				'options'  => array(
 					'enabled'  => esc_html__( 'Enabled', 'posterno-elementor' ),
 					'disabled' => esc_html__( 'Disabled', 'posterno-elementor' ),
-				],
+				),
 				'default'  => 'disabled',
-			]
+			)
 		);
 
 		$this->add_control(
 			'filter_id',
-			[
+			array(
 				'label'       => esc_html__( 'Query ID', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'description' => esc_html__( 'Optional string if you wish to filter the query arguments programmatically.', 'posterno-elementor' ),
-				'dynamic'     => [
+				'dynamic'     => array(
 					'active' => true,
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_section();
@@ -179,21 +209,21 @@ class ListingsQuery extends Widget_Base {
 		 */
 		$layout_options = apply_filters(
 			'pno_elementor_listings_query_layouts',
-			[
+			array(
 				'grid' => esc_html__( 'Grid', 'posterno-elementor' ),
 				'list' => esc_html__( 'List', 'posterno-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'layout_mode',
-			[
+			array(
 				'label'    => esc_html__( 'Layout style', 'posterno-elementor' ),
 				'type'     => Controls_Manager::SELECT,
 				'multiple' => true,
 				'options'  => $layout_options,
 				'default'  => 'list',
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -210,7 +240,7 @@ class ListingsQuery extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		if ( in_array( $settings['layout_mode'], [ 'grid', 'list' ], true ) ) {
+		if ( in_array( $settings['layout_mode'], array( 'grid', 'list' ), true ) ) {
 
 			Plugin::instance()->templates
 				->set_template_data( $settings )

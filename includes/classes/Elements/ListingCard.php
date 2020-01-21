@@ -88,11 +88,11 @@ class ListingCard extends Widget_Base {
 
 		$this->add_control(
 			'listing_id',
-			[
+			array(
 				'label' => esc_html__( 'Listing ID Number', 'posterno-elementor' ),
 				'type'  => Controls_Manager::NUMBER,
 				'step'  => 1,
-			]
+			)
 		);
 
 		/**
@@ -103,20 +103,20 @@ class ListingCard extends Widget_Base {
 		 */
 		$layout_options = apply_filters(
 			'pno_elementor_listing_card_layouts',
-			[
+			array(
 				'list' => esc_html__( 'List', 'posterno-elementor' ),
 				'grid' => esc_html__( 'Grid', 'posterno-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'layout_mode',
-			[
+			array(
 				'label'   => esc_html__( 'Layout style', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $layout_options,
 				'default' => 'list',
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -139,13 +139,13 @@ class ListingCard extends Widget_Base {
 			return;
 		}
 
-		if ( in_array( $settings['layout_mode'], [ 'grid', 'list' ], true ) ) {
+		if ( in_array( $settings['layout_mode'], array( 'grid', 'list' ), true ) ) {
 
 			$elementor_query = new \WP_Query(
-				[
+				array(
 					'p'         => $listing_id,
 					'post_type' => 'listings',
-				]
+				)
 			);
 
 			if ( $elementor_query->have_posts() ) {
@@ -180,15 +180,14 @@ class ListingCard extends Widget_Base {
 
 				posterno()->templates
 					->set_template_data(
-						[
+						array(
 							'type'    => 'info',
 							'message' => esc_html__( 'No listing was found with that ID.' ),
-						]
+						)
 					)
 					->get_template_part( 'message' );
 
 			}
-
 
 		} else {
 

@@ -87,20 +87,20 @@ class FacetSearchSubmit extends Widget_Base {
 
 		$this->add_control(
 			'button_label',
-			[
+			array(
 				'label'   => esc_html__( 'Button label' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => esc_html__( 'Search' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'redirect_url',
-			[
+			array(
 				'label'       => esc_html__( 'Redirect URL' ),
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'https://example.com/page' ),
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -127,10 +127,10 @@ class FacetSearchSubmit extends Widget_Base {
 
 			posterno()->templates
 				->set_template_data(
-					[
+					array(
 						'type'    => 'info',
 						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.' ),
-					]
+					)
 				)
 				->get_template_part( 'message' );
 
@@ -144,10 +144,10 @@ class FacetSearchSubmit extends Widget_Base {
 
 				posterno()->templates
 					->set_template_data(
-						[
+						array(
 							'type'    => 'info',
 							'message' => esc_html__( 'Please enter a redirect url.' ),
-						]
+						)
 					)
 					->get_template_part( 'message' );
 

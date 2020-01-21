@@ -87,11 +87,11 @@ class FacetPagination extends Widget_Base {
 
 		$this->add_control(
 			'note',
-			[
+			array(
 				'label' => false,
 				'type'  => Controls_Manager::RAW_HTML,
 				'raw'   => esc_html__( 'This element does not have any settings.', 'plugin-name' ),
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -114,10 +114,10 @@ class FacetPagination extends Widget_Base {
 
 			posterno()->templates
 				->set_template_data(
-					[
+					array(
 						'type'    => 'info',
 						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.' ),
-					]
+					)
 				)
 				->get_template_part( 'message' );
 

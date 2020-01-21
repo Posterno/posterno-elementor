@@ -58,11 +58,11 @@ $show_sublocations = isset( $data->show_subcategories ) && $data->show_subcatego
 
 				posterno()->templates
 					->set_template_data(
-						[
+						array(
 							'listing_location'  => $listing_location,
 							'show_sublocations' => $show_sublocations,
 							'image'             => $image,
-						]
+						)
 					)
 					->get_template_part( 'shortcodes/locations/image-list' );
 
@@ -70,10 +70,10 @@ $show_sublocations = isset( $data->show_subcategories ) && $data->show_subcatego
 
 				posterno()->templates
 					->set_template_data(
-						[
+						array(
 							'listing_location'  => $listing_location,
 							'show_sublocations' => $show_sublocations,
-						]
+						)
 					)
 					->get_template_part( 'shortcodes/locations/simple-list' );
 

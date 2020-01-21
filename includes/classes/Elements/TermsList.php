@@ -89,65 +89,65 @@ class TermsList extends Widget_Base {
 
 		$this->add_control(
 			'taxonomy_id',
-			[
+			array(
 				'label'   => esc_html__( 'Taxonomy', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT2,
 				'options' => Helper::get_registered_taxonomies(),
-			]
+			)
 		);
 
 		$this->add_control(
 			'show_subcategories',
-			[
+			array(
 				'label'        => esc_html__( 'Show subcategories', 'posterno-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Yes', 'posterno-elementor' ),
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
-				'conditions'   => [
-					'terms' => [
-						[
+				'conditions'   => array(
+					'terms' => array(
+						array(
 							'name'     => 'taxonomy_id',
 							'operator' => 'in',
-							'value'    => [
+							'value'    => array(
 								'listings-categories',
 								'listings-locations',
-							],
-						],
-					],
-				],
-			]
+							),
+						),
+					),
+				),
+			)
 		);
 
 		$this->add_control(
 			'hide_empty',
-			[
+			array(
 				'label'        => esc_html__( 'Hide empty terms', 'posterno-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Yes', 'posterno-elementor' ),
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
-			]
+			)
 		);
 
 		$this->add_control(
 			'number',
-			[
+			array(
 				'label'   => esc_html__( 'Number of terms', 'posterno-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'step'    => 1,
 				'default' => 999,
-			]
+			)
 		);
 
 		$this->add_control(
 			'orderby',
-			[
+			array(
 				'label'   => esc_html__( 'Order by', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT2,
-				'options' => [
+				'options' => array(
 					'name'        => 'name',
 					'slug'        => 'slug',
 					'term_group'  => 'term_group',
@@ -155,22 +155,22 @@ class TermsList extends Widget_Base {
 					'id'          => 'id',
 					'description' => 'description',
 					'parent'      => 'parent',
-				],
+				),
 				'default' => 'name',
-			]
+			)
 		);
 
 		$this->add_control(
 			'order',
-			[
+			array(
 				'label'   => esc_html__( 'Order', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT2,
-				'options' => [
+				'options' => array(
 					'ASC'  => 'ASC',
 					'DESC' => 'DESC',
-				],
+				),
 				'default' => 'ASC',
-			]
+			)
 		);
 
 		$this->end_controls_section();
@@ -191,19 +191,19 @@ class TermsList extends Widget_Base {
 		 */
 		$layout_options = apply_filters(
 			'pno_elementor_terms_list_layouts',
-			[
+			array(
 				'default' => esc_html__( 'Default', 'posterno-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'layout_mode',
-			[
+			array(
 				'label'   => esc_html__( 'Layout style', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $layout_options,
 				'default' => 'default',
-			]
+			)
 		);
 
 		$this->end_controls_section();
