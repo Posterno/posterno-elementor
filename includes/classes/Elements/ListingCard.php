@@ -141,14 +141,14 @@ class ListingCard extends Widget_Base {
 
 		if ( in_array( $settings['layout_mode'], [ 'grid', 'list' ], true ) ) {
 
-			$query = new \WP_Query(
+			$elementor_query = new \WP_Query(
 				[
 					'p'         => $listing_id,
 					'post_type' => 'listings',
 				]
 			);
 
-			if ( $query->have_posts() ) {
+			if ( $elementor_query->have_posts() ) {
 
 				if ( pno_is_layout_wrapper_required() ) {
 					echo '<div class="posterno-template">';
@@ -159,9 +159,9 @@ class ListingCard extends Widget_Base {
 					echo '<div class="card-deck">';
 				}
 
-				while ( $query->have_posts() ) :
+				while ( $elementor_query->have_posts() ) :
 
-					$query->the_post();
+					$elementor_query->the_post();
 
 					posterno()->templates->get_template_part( 'listings/card', $settings['layout_mode'] );
 

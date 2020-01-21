@@ -84,23 +84,23 @@ $i = '';
  */
 $args = apply_filters( 'pno_listings_elementor_query', $args, $data, $data->filter_id );
 
-$query = new WP_Query( $args );
+$elementor_query = new WP_Query( $args );
 
 ?>
 
 <div class="pno-block-listings-wrapper posterno-template">
 	<?php
 
-	if ( $query->have_posts() ) {
+	if ( $elementor_query->have_posts() ) {
 
 		// Start opening the grid's container.
 		if ( $layout === 'grid' ) {
 			echo '<div class="card-deck">';
 		}
 
-		while ( $query->have_posts() ) {
+		while ( $elementor_query->have_posts() ) {
 
-			$query->the_post();
+			$elementor_query->the_post();
 
 			posterno()->templates->get_template_part( 'listings/card', $layout );
 
@@ -122,19 +122,19 @@ $query = new WP_Query( $args );
 			posterno()->templates
 				->set_template_data(
 					[
-						'query' => $query,
+						'query' => $elementor_query,
 					]
 				)
 				->get_template_part( 'listings/results', 'footer' );
 		}
-
-		wp_reset_postdata();
 
 	} else {
 
 		posterno()->templates->get_template_part( 'listings/not-found' );
 
 	}
+
+	wp_reset_postdata();
 
 	?>
 </div>
