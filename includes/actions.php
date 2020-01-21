@@ -31,6 +31,14 @@ add_action(
 			)
 		);
 
+		$elements_manager->add_category(
+			'posterno_dashboard',
+			array(
+				'title' => esc_html__( 'Listings Dashboard', 'posterno-elementor' ),
+				'icon'  => 'fa fa-plug',
+			)
+		);
+
 	}
 );
 
