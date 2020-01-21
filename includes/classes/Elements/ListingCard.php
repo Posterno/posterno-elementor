@@ -150,6 +150,10 @@ class ListingCard extends Widget_Base {
 
 			if ( $query->have_posts() ) {
 
+				if ( pno_is_layout_wrapper_required() ) {
+					echo '<div class="posterno-template">';
+				}
+
 				// Start opening the grid's container.
 				if ( $settings['layout_mode'] === 'grid' ) {
 					echo '<div class="card-deck">';
@@ -165,6 +169,10 @@ class ListingCard extends Widget_Base {
 
 				// Close grid's container.
 				if ( $settings['layout_mode'] === 'grid' ) {
+					echo '</div>';
+				}
+
+				if ( pno_is_layout_wrapper_required() ) {
 					echo '</div>';
 				}
 
