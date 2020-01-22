@@ -9,6 +9,7 @@
  */
 
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Helper;
 
 /**
  * Display the custom theme builder sections for the dashboard pages.

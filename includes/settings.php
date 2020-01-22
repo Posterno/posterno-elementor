@@ -27,8 +27,13 @@ add_filter(
 
 		if ( ! empty( $types ) && is_array( $types ) ) {
 			foreach ( $types as $type_id => $label ) {
-				$settings['listings_settings'][] = Field::make( 'select', "listing_type_{$type_id}_card", sprintf( __( 'Listing card layout for the "%s" type' ), esc_html( $label ) ) )
-					->set_options( Cache::get_cards_layouts() );
+				foreach ( pno_get_listings_layout_available_options() as $layout_id => $layout_label ) {
+
+					$settings['listings_settings'][] = Field::make( 'select', "listing_type_{$type_id}_{$layout_id}_card", sprintf( __( 'Listing card layout for the "%1$s" type [%2$s]' ), esc_html( $label ), esc_html( $layout_label ) ) )
+						->set_width( 33.33 )
+						->set_options( Cache::get_cards_layouts() );
+
+				}
 			}
 		}
 
