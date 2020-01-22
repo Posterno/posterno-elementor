@@ -67,4 +67,52 @@ class Cache {
 		forget_transient( 'pno_elementor_cached_terms_' . $taxonomy );
 	}
 
+	/**
+	 * Get list of cards layouts cached.
+	 *
+	 * @return array
+	 */
+	public static function get_cards_layouts() {
+
+		return remember_transient(
+			'pno_elementor_cached_cards_layouts',
+			function() {
+
+				$args = array(
+					'post_type'              => 'elementor_library',
+					'posts_per_page'         => -1,
+					'meta_key'               => '_elementor_location',
+					'meta_value'             => 'listing-card',
+					'no_found_rows'          => true,
+					'update_post_term_cache' => false,
+					'update_post_meta_cache' => false,
+				);
+
+				$query = new \WP_Query( $args );
+
+				$data = array();
+
+				if ( $query->have_posts() ) {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+						$data[ absint( get_the_id() ) ] = esc_html( get_the_title() );
+					}
+				}
+
+				return $data;
+
+			}
+		);
+
+	}
+
+	/**
+	 * Purge the cache generated for cards layouts.
+	 *
+	 * @return void
+	 */
+	public static function purge_cards_cache() {
+		forget_transient( 'pno_elementor_cached_cards_layouts' );
+	}
+
 }

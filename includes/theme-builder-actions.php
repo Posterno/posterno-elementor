@@ -8,6 +8,8 @@
  * @since       1.0.0
  */
 
+use Posterno\Elementor\Cache;
+
 /**
  * Display the custom theme builder sections for the dashboard pages.
  */
@@ -39,3 +41,25 @@ foreach ( $dashboard_sections as $page_key => $page_name ) {
 	);
 
 }
+
+/**
+ * Automatically purge cache of cards templates list when creating a new card.
+ */
+add_action(
+	'save_post',
+	function( $post_id, $post, $update ) {
+
+		if ( $update ) {
+			return;
+		}
+
+		if ( 'elementor_library' !== $post->post_type ) {
+			return;
+		}
+
+		Cache::purge_cards_cache();
+
+	},
+	10,
+	3
+);
