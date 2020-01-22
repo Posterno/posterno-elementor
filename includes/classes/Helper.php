@@ -50,7 +50,7 @@ class Helper {
 	 */
 	public static function get_card_custom_layout( $listing_id ) {
 
-		$has = false;
+		$has  = false;
 		$type = pno_get_listing_type( $listing_id );
 
 		if ( $type instanceof \WP_Term ) {

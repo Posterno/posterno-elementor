@@ -64,3 +64,41 @@ add_action(
 	10,
 	3
 );
+
+/**
+ * Determine whether or not default cards layout should not output when
+ * a custom card layout has been added through Elementor Pro.
+ */
+add_filter(
+	'pno_bypass_card_layout',
+	function( $bypass, $layout ) {
+
+		$listing_id = get_the_id();
+
+		if ( $layout === 'list' && Helper::get_card_custom_layout( $listing_id ) ) {
+			return true;
+		}
+
+		return $bypass;
+
+	},
+	10,
+	2
+);
+
+/**
+ * Output custom card layout when assigned through Elementor Pro.
+ */
+add_action(
+	'pno_before_listing_in_loop',
+	function() {
+
+		$active_layout = pno_get_listings_results_active_layout();
+		$listing_id    = get_the_id();
+
+		if ( $active_layout === 'list' && Helper::get_card_custom_layout( $listing_id ) ) {
+			echo do_shortcode( '[elementor-template id="' . absint( Helper::get_card_custom_layout( $listing_id ) ) . '"]' );
+		}
+
+	}
+);

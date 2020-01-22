@@ -104,7 +104,7 @@ class Cache {
 			}
 		);
 
-		$default = [ 'default' => esc_html__( 'Default' ) ];
+		$default = array( 'default' => esc_html__( 'Default' ) );
 
 		return $default + $list;
 
