@@ -74,7 +74,7 @@ class Cache {
 	 */
 	public static function get_cards_layouts() {
 
-		return remember_transient(
+		$list = remember_transient(
 			'pno_elementor_cached_cards_layouts',
 			function() {
 
@@ -103,6 +103,10 @@ class Cache {
 
 			}
 		);
+
+		$default = [ 'default' => esc_html__( 'Default' ) ];
+
+		return $default + $list;
 
 	}
 
