@@ -54,7 +54,7 @@ add_action( 'elementor/theme/register_locations', 'pno_elementor_dashboard_locat
  */
 function pno_elementor_cards_layout_locations( $manager ) {
 
-	$layout_options = wp_list_pluck( pno_get_listings_layout_options()(), 'label' );
+	$layout_options = wp_list_pluck( pno_get_listings_layout_options(), 'label' );
 
 	if ( ! empty( $layout_options ) && is_array( $layout_options ) ) {
 
@@ -63,7 +63,7 @@ function pno_elementor_cards_layout_locations( $manager ) {
 			$manager->register_location(
 				"listing-card-{$key}",
 				array(
-					'label' => sprintf( esc_html__( 'Listings card: %s layout' ), $label ),
+					'label' => sprintf( esc_html__( 'Listings card: %s' ), $label ),
 				)
 			);
 
