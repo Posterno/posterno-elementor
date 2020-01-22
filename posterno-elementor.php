@@ -61,5 +61,6 @@ add_action(
 		}
 		unset( $requirements_check );
 
-	}
+	},
+	100
 );
