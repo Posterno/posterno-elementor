@@ -47,29 +47,19 @@ function pno_elementor_dashboard_locations( $manager ) {
 add_action( 'elementor/theme/register_locations', 'pno_elementor_dashboard_locations' );
 
 /**
- * Registers custom listings cards sections for the elementor theme builder.
+ * Registers custom listing card sections for the elementor theme builder.
  *
  * @param object $manager elementor manager.
  * @return void
  */
 function pno_elementor_cards_layout_locations( $manager ) {
 
-	$layout_options = wp_list_pluck( pno_get_listings_layout_options(), 'label' );
-
-	if ( ! empty( $layout_options ) && is_array( $layout_options ) ) {
-
-		foreach ( $layout_options as $key => $label ) {
-
-			$manager->register_location(
-				"listing-card-{$key}",
-				array(
-					'label' => sprintf( esc_html__( 'Listings card: %s' ), $label ),
-				)
-			);
-
-		}
-
-	}
+	$manager->register_location(
+		'listing-card',
+		array(
+			'label' => esc_html__( 'Listing card' ),
+		)
+	);
 
 }
 add_action( 'elementor/theme/register_locations', 'pno_elementor_cards_layout_locations' );
