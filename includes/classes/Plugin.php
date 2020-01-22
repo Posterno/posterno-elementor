@@ -159,6 +159,7 @@ class Plugin {
 
 		if ( class_exists( '\ElementorPro\Plugin' ) ) {
 			require_once PNO_ELEMENTOR_PLUGIN_DIR . 'includes/theme-locations.php';
+			require_once PNO_ELEMENTOR_PLUGIN_DIR . 'includes/theme-builder-actions.php';
 		}
 
 	}
