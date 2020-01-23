@@ -32,9 +32,9 @@ add_action(
 		);
 
 		$elements_manager->add_category(
-			'posterno_dashboard',
+			'posterno_single',
 			array(
-				'title' => esc_html__( 'Listings Dashboard', 'posterno-elementor' ),
+				'title' => esc_html__( 'Single listing', 'posterno-elementor' ),
 				'icon'  => 'fa fa-plug',
 			)
 		);
@@ -61,6 +61,10 @@ add_action(
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\FacetResultsNumber() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\FacetSearchSubmit() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\FacetFakeQuery() );
+		}
+
+		// Register elementor pro only widgets.
+		if ( class_exists( '\ElementorPro\Plugin' ) ) {
 		}
 
 	}
