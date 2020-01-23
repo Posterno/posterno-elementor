@@ -12,6 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 use ElementorPro\Plugin;
+use Posterno\Elementor\Tags\ListingClaimed;
 use Posterno\Elementor\Tags\ListingFeatured;
 use Posterno\Elementor\Tags\ListingFeaturedImage;
 use Posterno\Elementor\Tags\ListingReviewsListUrl;
@@ -51,6 +52,10 @@ add_action(
 			$dynamic_tags->register_tag( new ListingReviewsTotal() );
 			$dynamic_tags->register_tag( new ListingReviewsListUrl() );
 			$dynamic_tags->register_tag( new ListingReviewsOverallRating() );
+		}
+
+		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
+			$dynamic_tags->register_tag( new ListingClaimed() );
 		}
 
 	}
