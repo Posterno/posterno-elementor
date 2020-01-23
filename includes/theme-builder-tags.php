@@ -13,6 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 use ElementorPro\Plugin;
 use Posterno\Elementor\Tags\ListingFeaturedImage;
+use Posterno\Elementor\Tags\ListingReviewsListUrl;
 use Posterno\Elementor\Tags\ListingReviewsTotal;
 
 /**
@@ -45,6 +46,7 @@ add_action(
 
 		if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
 			$dynamic_tags->register_tag( new ListingReviewsTotal() );
+			$dynamic_tags->register_tag( new ListingReviewsListUrl() );
 		}
 
 	}
