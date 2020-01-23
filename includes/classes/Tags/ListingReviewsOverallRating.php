@@ -56,42 +56,12 @@ class ListingReviewsOverallRating extends BaseDataTag {
 	protected function _register_controls() {
 
 		$this->add_control(
-			'format_no_reviews',
+			'fallback_text',
 			array(
-				'label'   => __( 'No reviews format', 'posterno-elementor' ),
-				'default' => __( 'No reviews', 'posterno-elementor' ),
+				'label' => esc_html__( 'Fallback text', 'posterno-elementor' ),
+				'type'  => \Elementor\Controls_Manager::TEXT,
 			)
 		);
-
-		$this->add_control(
-			'format_one_review',
-			array(
-				'label'   => __( 'One review format', 'posterno-elementor' ),
-				'default' => __( 'One review', 'posterno-elementor' ),
-			)
-		);
-
-		$this->add_control(
-			'format_many_reviews',
-			array(
-				'label'   => __( 'Many reviews format', 'posterno-elementor' ),
-				'default' => __( '{number} reviews', 'posterno-elementor' ),
-			)
-		);
-
-		$this->add_control(
-			'link_to',
-			array(
-				'label'   => __( 'Link', 'posterno-elementor' ),
-				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => '',
-				'options' => array(
-					''              => __( 'None', 'posterno-elementor' ),
-					'comments_link' => __( 'Reviews Link', 'posterno-elementor' ),
-				),
-			)
-		);
-
 	}
 
 	/**
@@ -102,34 +72,16 @@ class ListingReviewsOverallRating extends BaseDataTag {
 	 */
 	public function get_value( array $options = array() ) {
 
-		$total = absint( \Posterno\Reviews\Rating::get_for_listing( get_the_id() ) );
+		$fallback = $this->get_settings( 'fallback_text' );
+		$total    = absint( \Posterno\Reviews\Rating::get_for_listing( get_the_id() ) );
 
-		$no_reviews   = $this->get_settings( 'format_no_reviews' );
-		$one_review   = $this->get_settings( 'format_one_review' );
-		$many_reviews = $this->get_settings( 'format_many_reviews' );
-		$link         = $this->get_settings( 'link_to' );
-		$count        = false;
-
-		if ( ! $total || $total === 0 ) {
-			$count = $no_reviews;
-		} elseif ( $total === 1 ) {
-			$count = $one_review;
-		} elseif ( $total > 1 ) {
-
-			$count = strtr(
-				$many_reviews,
-				array(
-					'{number}' => number_format_i18n( $total ),
-				)
-			);
-
+		if ( $total > 0 ) {
+			return $total;
+		} elseif ( $total <= 0 && $fallback ) {
+			return wp_kses_post( $fallback );
+		} else {
+			return false;
 		}
-
-		if ( $link === 'comments_link' ) {
-			$count = sprintf( '<a href="%s">%s</a>', esc_url( trailingslashit( get_permalink( get_the_id() ) ) . '#reviews' ), $count );
-		}
-
-		return $count;
 
 	}
 
