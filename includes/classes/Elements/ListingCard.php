@@ -182,7 +182,7 @@ class ListingCard extends Widget_Base {
 					->set_template_data(
 						array(
 							'type'    => 'info',
-							'message' => esc_html__( 'No listing was found with that ID.' ),
+							'message' => esc_html__( 'No listing was found with that ID.', 'posterno-elementor' ),
 						)
 					)
 					->get_template_part( 'message' );

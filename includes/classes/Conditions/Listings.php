@@ -44,7 +44,7 @@ class Listings extends ThemeBuilder\Conditions\Condition_Base {
 	 * @return int
 	 */
 	public function get_label() {
-		return esc_html__( 'Listings' );
+		return esc_html__( 'Listings', 'posterno-elementor' );
 	}
 
 	/**

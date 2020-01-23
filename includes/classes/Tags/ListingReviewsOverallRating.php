@@ -33,7 +33,7 @@ class ListingReviewsOverallRating extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Overall rating number' );
+		return esc_html__( 'Overall rating number', 'posterno-elementor' );
 	}
 
 	/**
@@ -56,12 +56,42 @@ class ListingReviewsOverallRating extends BaseDataTag {
 	protected function _register_controls() {
 
 		$this->add_control(
-			'fallback_text',
-			array(
-				'label' => esc_html__( 'Fallback text' ),
-				'type'  => \Elementor\Controls_Manager::TEXT,
-			)
+			'format_no_comments',
+			[
+				'label' => __( 'No Comments Format', 'posterno-elementor' ),
+				'default' => __( 'No Responses', 'posterno-elementor' ),
+			]
 		);
+
+		$this->add_control(
+			'format_one_comments',
+			[
+				'label' => __( 'One Comment Format', 'posterno-elementor' ),
+				'default' => __( 'One Response', 'posterno-elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'format_many_comments',
+			[
+				'label' => __( 'Many Comment Format', 'posterno-elementor' ),
+				'default' => __( '{number} Responses', 'posterno-elementor' ),
+			]
+		);
+
+		$this->add_control(
+			'link_to',
+			[
+				'label' => __( 'Link', 'posterno-elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => [
+					'' => __( 'None', 'posterno-elementor' ),
+					'comments_link' => __( 'Comments Link', 'posterno-elementor' ),
+				],
+			]
+		);
+
 	}
 
 	/**

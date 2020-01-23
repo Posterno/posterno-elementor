@@ -29,7 +29,7 @@ add_action(
 		$module->register_group(
 			'posterno_tags',
 			array(
-				'title' => esc_html__( 'Listings' ),
+				'title' => esc_html__( 'Listings', 'posterno-elementor' ),
 			)
 		);
 

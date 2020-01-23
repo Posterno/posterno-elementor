@@ -142,7 +142,7 @@ class ListingsQuery extends Widget_Base {
 			array(
 				'label'       => esc_html__( 'Listings IDs', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Example: 55, 98' ),
+				'placeholder' => esc_html__( 'Example: 55, 98', 'posterno-elementor' ),
 				'conditions'  => array(
 					'terms' => array(
 						array(

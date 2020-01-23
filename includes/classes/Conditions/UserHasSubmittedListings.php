@@ -53,7 +53,7 @@ class UserHasSubmittedListings extends ThemeBuilder\Conditions\Condition_Base {
 	 * @return string
 	 */
 	public function get_label() {
-		return esc_html__( 'User has submitted listings' );
+		return esc_html__( 'User has submitted listings', 'posterno-elementor' );
 	}
 
 	/**

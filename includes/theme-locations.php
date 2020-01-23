@@ -30,14 +30,14 @@ function pno_elementor_dashboard_locations( $manager ) {
 		$manager->register_location(
 			"dashboard-before-{$section_key}",
 			array(
-				'label' => sprintf( esc_html__( 'Listings dashboard page: %s (before)' ), $section_name ),
+				'label' => sprintf( esc_html__( 'Listings dashboard page: %s (before)', 'posterno-elementor' ), $section_name ),
 			)
 		);
 
 		$manager->register_location(
 			"dashboard-after-{$section_key}",
 			array(
-				'label' => sprintf( esc_html__( 'Listings dashboard page: %s (after)' ), $section_name ),
+				'label' => sprintf( esc_html__( 'Listings dashboard page: %s (after)', 'posterno-elementor' ), $section_name ),
 			)
 		);
 
@@ -57,7 +57,7 @@ function pno_elementor_cards_layout_locations( $manager ) {
 	$manager->register_location(
 		'listing-card',
 		array(
-			'label' => esc_html__( 'Listing card' ),
+			'label' => esc_html__( 'Listing card', 'posterno-elementor' ),
 		)
 	);
 

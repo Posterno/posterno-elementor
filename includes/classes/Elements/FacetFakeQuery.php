@@ -90,7 +90,7 @@ class FacetFakeQuery extends Widget_Base {
 			array(
 				'label' => false,
 				'type'  => Controls_Manager::RAW_HTML,
-				'raw'   => esc_html__( 'This element does not have any settings. Please refer to the documentation of the search forms plugin for more information.', 'plugin-name' ),
+				'raw'   => esc_html__( 'This element does not have any settings. Please refer to the documentation of the search forms plugin for more information.', 'posterno-elementor' ),
 			)
 		);
 
@@ -116,7 +116,7 @@ class FacetFakeQuery extends Widget_Base {
 				->set_template_data(
 					array(
 						'type'    => 'info',
-						'message' => esc_html__( 'This element does not have any visible output. Please refer to the documentation of the search forms plugin for more information.' ),
+						'message' => esc_html__( 'This element does not have any visible output. Please refer to the documentation of the search forms plugin for more information.', 'posterno-elementor' ),
 					)
 				)
 				->get_template_part( 'message' );

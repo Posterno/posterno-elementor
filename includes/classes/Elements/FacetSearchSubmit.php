@@ -88,18 +88,18 @@ class FacetSearchSubmit extends Widget_Base {
 		$this->add_control(
 			'button_label',
 			array(
-				'label'   => esc_html__( 'Button label' ),
+				'label'   => esc_html__( 'Button label', 'posterno-elementor' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Search' ),
+				'default' => esc_html__( 'Search', 'posterno-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'redirect_url',
 			array(
-				'label'       => esc_html__( 'Redirect URL' ),
+				'label'       => esc_html__( 'Redirect URL', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'https://example.com/page' ),
+				'placeholder' => esc_html__( 'https://example.com/page', 'posterno-elementor' ),
 			)
 		);
 
@@ -117,7 +117,7 @@ class FacetSearchSubmit extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		$label = isset( $settings['button_label'] ) && ! empty( $settings['button_label'] ) ? esc_html( $settings['button_label'] ) : esc_html__( 'Search' );
+		$label = isset( $settings['button_label'] ) && ! empty( $settings['button_label'] ) ? esc_html( $settings['button_label'] ) : esc_html__( 'Search', 'posterno-elementor' );
 
 		$redirect_url = isset( $settings['redirect_url'] ) && ! empty( $settings['redirect_url'] ) ? esc_url( $settings['redirect_url'] ) : false;
 
@@ -129,7 +129,7 @@ class FacetSearchSubmit extends Widget_Base {
 				->set_template_data(
 					array(
 						'type'    => 'info',
-						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.' ),
+						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.', 'posterno-elementor' ),
 					)
 				)
 				->get_template_part( 'message' );
@@ -146,7 +146,7 @@ class FacetSearchSubmit extends Widget_Base {
 					->set_template_data(
 						array(
 							'type'    => 'info',
-							'message' => esc_html__( 'Please enter a redirect url.' ),
+							'message' => esc_html__( 'Please enter a redirect url.', 'posterno-elementor' ),
 						)
 					)
 					->get_template_part( 'message' );

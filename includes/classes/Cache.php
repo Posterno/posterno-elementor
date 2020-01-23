@@ -104,7 +104,7 @@ class Cache {
 			}
 		);
 
-		$default = array( 'default' => esc_html__( 'Default' ) );
+		$default = array( 'default' => esc_html__( 'Default', 'posterno-elementor' ) );
 
 		return $default + $list;
 

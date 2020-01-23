@@ -33,7 +33,7 @@ class ListingReviewsTotal extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Total number of reviews' );
+		return esc_html__( 'Total number of reviews', 'posterno-elementor' );
 	}
 
 	/**
@@ -58,7 +58,7 @@ class ListingReviewsTotal extends BaseDataTag {
 		$this->add_control(
 			'fallback_text',
 			array(
-				'label' => esc_html__( 'Fallback text' ),
+				'label' => esc_html__( 'Fallback text', 'posterno-elementor' ),
 				'type'  => \Elementor\Controls_Manager::TEXT,
 			)
 		);

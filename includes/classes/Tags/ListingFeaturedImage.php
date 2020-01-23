@@ -34,7 +34,7 @@ class ListingFeaturedImage extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Listing featured image' );
+		return esc_html__( 'Listing featured image', 'posterno-elementor' );
 	}
 
 	/**

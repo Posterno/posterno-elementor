@@ -33,7 +33,7 @@ class ListingReviewsListUrl extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Reviews list URL' );
+		return esc_html__( 'Reviews list URL', 'posterno-elementor' );
 	}
 
 	/**

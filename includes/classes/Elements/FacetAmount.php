@@ -90,7 +90,7 @@ class FacetAmount extends Widget_Base {
 			array(
 				'label' => false,
 				'type'  => Controls_Manager::RAW_HTML,
-				'raw'   => esc_html__( 'This element does not have any settings.', 'plugin-name' ),
+				'raw'   => esc_html__( 'This element does not have any settings.', 'posterno-elementor' ),
 			)
 		);
 
@@ -116,7 +116,7 @@ class FacetAmount extends Widget_Base {
 				->set_template_data(
 					array(
 						'type'    => 'info',
-						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.' ),
+						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.', 'posterno-elementor' ),
 					)
 				)
 				->get_template_part( 'message' );
