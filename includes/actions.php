@@ -65,6 +65,11 @@ add_action(
 
 		// Register elementor pro only widgets.
 		if ( class_exists( '\ElementorPro\Plugin' ) ) {
+
+			if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
+				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Listing\RatingStars() );
+			}
+
 		}
 
 	}
