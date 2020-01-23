@@ -46,7 +46,7 @@ class Helper {
 	 * Determine and get the ID number of the custom layout assigned to a listing card.
 	 *
 	 * @param string|int $listing_id listing id number.
-	 * @param string $layout the currently active layout to check for.
+	 * @param string     $layout the currently active layout to check for.
 	 * @return bool|int
 	 */
 	public static function get_card_custom_layout( $listing_id, $layout ) {
