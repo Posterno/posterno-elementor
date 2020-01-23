@@ -1,6 +1,6 @@
 <?php
 /**
- * Total number of submitted reviews for a listing.
+ * Overall rating number of a listing.
  *
  * @package     posterno-elementor
  * @copyright   Copyright (c) 2020, Sematico LTD
@@ -14,9 +14,9 @@ namespace Posterno\Elementor\Tags;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Get the total number of submitted reviews for a listing.
+ * Get the overall rating of a listing.
  */
-class ListingReviewsTotal extends BaseDataTag {
+class ListingReviewsOverallRating extends BaseDataTag {
 
 	/**
 	 * Name of the tag.
@@ -24,7 +24,7 @@ class ListingReviewsTotal extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'posterno-listing-reviews-total-tag';
+		return 'posterno-listing-reviews-overall-rating-tag';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class ListingReviewsTotal extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Total number of reviews' );
+		return esc_html__( 'Overall rating number' );
 	}
 
 	/**
@@ -73,7 +73,7 @@ class ListingReviewsTotal extends BaseDataTag {
 	public function get_value( array $options = array() ) {
 
 		$fallback = $this->get_settings( 'fallback_text' );
-		$total    = absint( \Posterno\Reviews\Helper::get_total_reviews_for_listing( get_the_id() ) );
+		$total    = absint( \Posterno\Reviews\Rating::get_for_listing( get_the_id() ) );
 
 		if ( $total > 0 ) {
 			return $total;
