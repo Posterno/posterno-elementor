@@ -8,7 +8,7 @@
  * @since       1.0.0
  */
 
-namespace Posterno\Elementor\Elements\Listing;
+namespace Posterno\Elementor\Elements;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -66,7 +66,7 @@ class RatingStars extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return array( 'posterno_single' );
+		return array( 'posterno' );
 	}
 
 	/**

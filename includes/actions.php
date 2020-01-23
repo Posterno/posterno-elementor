@@ -67,7 +67,7 @@ add_action(
 		if ( class_exists( '\ElementorPro\Plugin' ) ) {
 
 			if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
-				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Listing\RatingStars() );
+				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\RatingStars() );
 			}
 
 		}
