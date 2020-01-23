@@ -46,15 +46,16 @@ class Helper {
 	 * Determine and get the ID number of the custom layout assigned to a listing card.
 	 *
 	 * @param string|int $listing_id listing id number.
+	 * @param string $layout the currently active layout to check for.
 	 * @return bool|int
 	 */
-	public static function get_card_custom_layout( $listing_id ) {
+	public static function get_card_custom_layout( $listing_id, $layout ) {
 
 		$has  = false;
 		$type = pno_get_listing_type( $listing_id );
 
 		if ( $type instanceof \WP_Term ) {
-			$layout = pno_get_option( "listing_type_{$type->term_id}_card" );
+			$layout = pno_get_option( "listing_type_{$type->term_id}_{$layout}_card" );
 			if ( $layout !== 'default' && ! empty( $layout ) ) {
 				return absint( $layout );
 			}

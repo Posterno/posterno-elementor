@@ -75,7 +75,9 @@ add_filter(
 
 		$listing_id = get_the_id();
 
-		if ( $layout === 'list' && Helper::get_card_custom_layout( $listing_id ) ) {
+		$active_layout = pno_get_listings_results_active_layout();
+
+		if ( $layout === 'list' && Helper::get_card_custom_layout( $listing_id, $active_layout ) ) {
 			return true;
 		}
 
@@ -96,8 +98,8 @@ add_action(
 		$active_layout = pno_get_listings_results_active_layout();
 		$listing_id    = get_the_id();
 
-		if ( $active_layout === 'list' && Helper::get_card_custom_layout( $listing_id ) ) {
-			echo do_shortcode( '[elementor-template id="' . absint( Helper::get_card_custom_layout( $listing_id ) ) . '"]' );
+		if ( $active_layout === 'list' && Helper::get_card_custom_layout( $listing_id, $active_layout ) ) {
+			echo do_shortcode( '[elementor-template id="' . absint( Helper::get_card_custom_layout( $listing_id, $active_layout ) ) . '"]' );
 		}
 
 	}
