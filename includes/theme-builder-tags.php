@@ -13,6 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 use ElementorPro\Plugin;
 use Posterno\Elementor\Tags\ListingFeaturedImage;
+use Posterno\Elementor\Tags\ListingReviewsTotal;
 
 /**
  * Register a new group for listings dynamic tags.
@@ -41,6 +42,10 @@ add_action(
 	function( $dynamic_tags ) {
 
 		$dynamic_tags->register_tag( new ListingFeaturedImage() );
+
+		if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
+			$dynamic_tags->register_tag( new ListingReviewsTotal() );
+		}
 
 	}
 );
