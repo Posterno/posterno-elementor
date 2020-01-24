@@ -50,10 +50,10 @@ class Visibility {
 		add_action( 'elementor/element/common/posterno_visibility_section/before_section_end', array( $this, 'register_controls' ), 10, 2 );
 		add_action( 'elementor/element/section/posterno_visibility_section/before_section_end', array( $this, 'register_controls' ), 10, 2 );
 
-		add_filter('elementor/widget/render_content', [ $this, 'content_change' ], 999, 2 );
-		add_filter('elementor/section/render_content', [ $this, 'content_change' ], 999, 2 );
+		add_filter( 'elementor/widget/render_content', array( $this, 'content_change' ), 999, 2 );
+		add_filter( 'elementor/section/render_content', array( $this, 'content_change' ), 999, 2 );
 
-		add_filter( 'elementor/frontend/section/should_render', [ $this, 'section_should_render' ] , 10, 2 );
+		add_filter( 'elementor/frontend/section/should_render', array( $this, 'section_should_render' ), 10, 2 );
 
 	}
 
@@ -92,7 +92,7 @@ class Visibility {
 		);
 
 		$element->add_control(
-			'posterno_visibility_role_visible',
+			'posterno_visibility_logic',
 			array(
 				'type'      => Controls_Manager::SELECT2,
 				'label'     => esc_html__( 'Visible for:', 'posterno-elementor' ),
@@ -100,23 +100,7 @@ class Visibility {
 				'default'   => array(),
 				'multiple'  => true,
 				'condition' => array(
-					'posterno_visibility_enabled'     => 'yes',
-					'posterno_visibility_role_hidden' => array(),
-				),
-			)
-		);
-
-		$element->add_control(
-			'posterno_visibility_role_hidden',
-			array(
-				'type'      => Controls_Manager::SELECT2,
-				'label'     => esc_html__( 'Hidden for:', 'posterno-elementor' ),
-				'options'   => $this->get_visibility_options(),
-				'default'   => array(),
-				'multiple'  => true,
-				'condition' => array(
 					'posterno_visibility_enabled'      => 'yes',
-					'posterno_visibility_role_visible' => array(),
 				),
 			)
 		);
@@ -130,10 +114,10 @@ class Visibility {
 	 */
 	private function get_visibility_options() {
 
-		$options = [
-			'user' => esc_html__( 'Logged in' ),
-			'guest' => esc_html__( 'Logged out' ),
-		];
+		$options = array(
+			'user'  => esc_html__( 'User is logged in' ),
+			'guest' => esc_html__( 'User is logged out' ),
+		);
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );
 
@@ -165,7 +149,7 @@ class Visibility {
 	/**
 	 * Detect whether or not a section should render.
 	 *
-	 * @param bool $should_render whether or not the section should render.
+	 * @param bool   $should_render whether or not the section should render.
 	 * @param object $section elementor widget instance.
 	 * @return bool
 	 */
@@ -182,16 +166,61 @@ class Visibility {
 	}
 
 	/**
-	 * Process the visibility conditions specified for widgets and sections.
+	 * Determine visibility conditions specified for widgets and sections.
 	 *
 	 * @param array $settings settings list.
 	 * @return boolean
 	 */
 	private function should_render( $settings ) {
 
+		if ( $settings['posterno_visibility_enabled'] == 'yes' ) {
+
+			if ( ! empty( $settings['posterno_visibility_logic'] ) ) {
+
+				$visible_settings = $settings['posterno_visibility_logic'];
+
+				return $this->get_processed_visibility( $visible_settings );
+
+			}
+
+		}
+
 		return true;
 
 	}
 
+	/**
+	 * Do the visibility logic based on the settings.
+	 *
+	 * @param array $settings settings list.
+	 * @return bool
+	 */
+	private function get_processed_visibility( $settings ) {
+
+		$is_logged_in = is_user_logged_in();
+		$is_visible   = true;
+
+		if ( in_array( 'user', $settings, true ) && ! $is_logged_in ) {
+			$is_visible = false;
+		}
+
+		if ( in_array( 'guest', $settings, true ) ) {
+			if ( $is_logged_in ) {
+				$is_visible = false;
+			} else {
+				$is_visible = true;
+			}
+		}
+
+		/**
+		 * Filter: allow developers to add custom visibility logic functionality.
+		 *
+		 * @param bool $is_visible if the widget/section is visible or not.
+		 * @param array $settings the visibility settings selected by the user.
+		 * @return bool
+		 */
+		return apply_filters( 'pno_elementor_visibility_logic', $is_visible, $settings );
+
+	}
 
 }
