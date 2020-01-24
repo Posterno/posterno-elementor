@@ -9,6 +9,7 @@
  */
 
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Documents\ListingsArchive;
 use Posterno\Elementor\Helper;
 
 /**
@@ -23,7 +24,7 @@ foreach ( $dashboard_sections as $page_key => $page_name ) {
 
 	add_action(
 		"pno_dashboard_tab_content_{$page_key}",
-		function() use( $page_key ) {
+		function() use ( $page_key ) {
 			if ( elementor_theme_do_location( "dashboard-before-{$page_key}" ) ) {
 				elementor_theme_do_location( "dashboard-before-{$page_key}" );
 			}
@@ -33,7 +34,7 @@ foreach ( $dashboard_sections as $page_key => $page_name ) {
 
 	add_action(
 		"pno_dashboard_tab_content_{$page_key}",
-		function() use( $page_key ) {
+		function() use ( $page_key ) {
 			if ( elementor_theme_do_location( "dashboard-after-{$page_key}" ) ) {
 				elementor_theme_do_location( "dashboard-after-{$page_key}" );
 			}
@@ -101,6 +102,15 @@ add_action(
 		if ( $active_layout === 'list' && Helper::get_card_custom_layout( $listing_id, $active_layout ) ) {
 			echo do_shortcode( '[elementor-template id="' . absint( Helper::get_card_custom_layout( $listing_id, $active_layout ) ) . '"]' );
 		}
+
+	}
+);
+
+add_action(
+	'elementor/documents/register',
+	function( $manager ) {
+
+		$manager->register_document_type( 'listings-archive', ListingsArchive::get_class_full_name() );
 
 	}
 );
