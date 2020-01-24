@@ -9,6 +9,7 @@
  */
 
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Elements\ListingAddToFavouritesButton;
 use Posterno\Elementor\Elements\ListingCard;
 use Posterno\Elementor\Elements\ListingClaimButton;
 use Posterno\Elementor\Elements\ListingsQuery;
@@ -80,6 +81,10 @@ add_action(
 
 		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ListingClaimButton() );
+		}
+
+		if ( class_exists( '\Posterno\Favourites\Plugin' ) ) {
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ListingAddToFavouritesButton() );
 		}
 
 	}
