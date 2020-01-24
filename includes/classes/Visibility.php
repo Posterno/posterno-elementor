@@ -153,6 +153,10 @@ class Visibility {
 			$options['listing_is_claimed'] = esc_html__( 'Listing is claimed' );
 		}
 
+		if ( class_exists( '\Posterno\Favourites\Plugin' ) ) {
+			$options['listing_is_fav'] = esc_html__( 'User has bookmarked listing' );
+		}
+
 		return apply_filters( 'pno_elementor_visibility_options', $options );
 
 	}
@@ -301,6 +305,16 @@ class Visibility {
 		if ( class_exists( '\Posterno\Claims\Plugin' ) && in_array( 'listing_is_claimed', $settings, true ) ) {
 
 			if ( pno_listing_is_claimed( $listing_id ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+
+		}
+
+		if ( class_exists( '\Posterno\Favourites\Plugin' ) && in_array( 'listing_is_fav', $settings, true ) ) {
+
+			if ( $is_logged_in && \Posterno\Favourites\User::bookmarked_listing( $listing_id, get_current_user_id() ) ) {
 				$is_visible = true;
 			} else {
 				$is_visible = false;
