@@ -14,6 +14,7 @@ namespace Posterno\Elementor\Conditions;
 defined( 'ABSPATH' ) || exit;
 
 use \ElementorPro\Modules\ThemeBuilder as ThemeBuilder;
+use Posterno\Elementor\Helper;
 
 /**
  * Registers listings related conditions.
@@ -83,7 +84,7 @@ class Listings extends ThemeBuilder\Conditions\Condition_Base {
 	 * @return bool
 	 */
 	public function check( $args ) {
-		return true;
+		return Helper::is_listings_archive() || Helper::is_listings_taxonomy();
 	}
 
 }

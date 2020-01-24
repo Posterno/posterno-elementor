@@ -65,4 +65,22 @@ class Helper {
 
 	}
 
+	/**
+	 * Returns true when viewing a listing taxonomy archive.
+	 *
+	 * @return boolean
+	 */
+	public static function is_listings_taxonomy() {
+		return is_tax( get_object_taxonomies( 'listings' ) );
+	}
+
+	/**
+	 * Returns true when viewing the listings post type archive page.
+	 *
+	 * @return boolean
+	 */
+	public static function is_listings_archive() {
+		return ( is_post_type_archive( 'listings' ) );
+	}
+
 }
