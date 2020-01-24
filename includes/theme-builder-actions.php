@@ -9,6 +9,7 @@
  */
 
 use Posterno\Elementor\Cache;
+use Posterno\Elementor\Conditions\Listings;
 use Posterno\Elementor\Documents\ListingsArchive;
 use Posterno\Elementor\Helper;
 
@@ -114,6 +115,17 @@ add_action(
 	function( $manager ) {
 
 		$manager->register_document_type( 'listings-archive', ListingsArchive::get_class_full_name() );
+
+	}
+);
+
+add_action(
+	'elementor/theme/register_conditions',
+	function( $manager ) {
+
+		$listings = new Listings();
+
+		$manager->get_condition( 'general' )->register_sub_condition( $listings );
 
 	}
 );

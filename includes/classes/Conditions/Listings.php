@@ -14,7 +14,6 @@ namespace Posterno\Elementor\Conditions;
 defined( 'ABSPATH' ) || exit;
 
 use \ElementorPro\Modules\ThemeBuilder as ThemeBuilder;
-use Posterno\Elementor\Documents\ListingsArchive;
 
 /**
  * Registers listings related conditions.
@@ -66,9 +65,11 @@ class Listings extends ThemeBuilder\Conditions\Condition_Base {
 
 		$listings_archive = new ListingsArchive();
 
-		$listings_single = new ThemeBuilder\Conditions\Post( [
-			'post_type' => 'listings',
-		] );
+		$listings_single = new ThemeBuilder\Conditions\Post(
+			array(
+				'post_type' => 'listings',
+			)
+		);
 
 		$this->register_sub_condition( $listings_archive );
 		$this->register_sub_condition( $listings_single );
