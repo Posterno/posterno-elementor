@@ -94,12 +94,13 @@ class Visibility {
 		$element->add_control(
 			'posterno_visibility_logic',
 			array(
-				'type'      => Controls_Manager::SELECT2,
-				'label'     => esc_html__( 'Visible for:', 'posterno-elementor' ),
-				'options'   => $this->get_visibility_options(),
-				'default'   => array(),
-				'multiple'  => true,
-				'condition' => array(
+				'type'        => Controls_Manager::SELECT2,
+				'label'       => esc_html__( 'Visible for:', 'posterno-elementor' ),
+				'options'     => $this->get_visibility_options(),
+				'default'     => array(),
+				'multiple'    => true,
+				'label_block' => true,
+				'condition'   => array(
 					'posterno_visibility_enabled' => 'yes',
 				),
 			)
@@ -108,12 +109,24 @@ class Visibility {
 		$element->add_control(
 			'posterno_visibility_logic_listing_id',
 			array(
-				'type'    => Controls_Manager::NUMBER,
-				'dynamic' => array(
+				'type'        => Controls_Manager::NUMBER,
+				'dynamic'     => array(
 					'active' => true,
 				),
-				'label'   => esc_html__( 'Listing ID:', 'posterno-elementor' ),
-				'description' => esc_html__( 'Some visibility conditions are reserved for listings. Here you can specific to which listing it should apply. Select "Post ID" from the the dynamic menu to automatically retrieve the ID number of the current listing.' )
+				'label'       => esc_html__( 'Listing ID:', 'posterno-elementor' ),
+				'description' => esc_html__( 'Some visibility conditions are reserved for listings. Here you can specific to which listing it should apply. Select "Post ID" from the the dynamic menu to automatically retrieve the ID number of the current listing.' ),
+			)
+		);
+
+		$element->add_control(
+			'posterno_visibility_logic_listing_type',
+			array(
+				'type'        => Controls_Manager::SELECT2,
+				'label'       => esc_html__( 'Listing types', 'posterno-elementor' ),
+				'options'     => pno_get_listings_types_for_association(),
+				'default'     => array(),
+				'multiple'    => true,
+				'label_block' => true,
 			)
 		);
 
@@ -129,10 +142,11 @@ class Visibility {
 		$options = array(
 			'user'             => esc_html__( 'User is logged in' ),
 			'guest'            => esc_html__( 'User is logged out' ),
-			'listing_author' => esc_html__( 'User has submitted listings' ),
-			'listing_owner' => esc_html__( 'User is owner of listing' ),
+			'listing_author'   => esc_html__( 'User has submitted listings' ),
+			'listing_owner'    => esc_html__( 'User is owner of listing' ),
 			'listing_featured' => esc_html__( 'Listing is featured' ),
-			'listing_expired' => esc_html__( 'Listing is expired' ),
+			'listing_expired'  => esc_html__( 'Listing is expired' ),
+			'listing_is_type'  => esc_html__( 'Listing is of type' ),
 		);
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );
@@ -193,11 +207,9 @@ class Visibility {
 
 			if ( ! empty( $settings['posterno_visibility_logic'] ) ) {
 
-				$visible_settings = $settings['posterno_visibility_logic'];
+				$visibility_methods = $settings['posterno_visibility_logic'];
 
-				$listing_id = isset( $settings['posterno_visibility_logic_listing_id'] ) && ! empty( $settings['posterno_visibility_logic_listing_id'] ) ? absint( $settings['posterno_visibility_logic_listing_id'] ) : false;
-
-				return $this->get_processed_visibility( $visible_settings, $listing_id );
+				return $this->get_processed_visibility( $visibility_methods, $settings );
 
 			}
 
@@ -210,14 +222,15 @@ class Visibility {
 	/**
 	 * Do the visibility logic based on the settings.
 	 *
-	 * @param array $settings settings list.
-	 * @param string|bool $listing_id the ID number of a listing to verify if needed.
+	 * @param array $settings visibility settings list.
+	 * @param array $all_settings any other setting that has been sent through.
 	 * @return bool
 	 */
-	private function get_processed_visibility( $settings, $listing_id = false ) {
+	private function get_processed_visibility( $settings, $all_settings ) {
 
 		$is_logged_in = is_user_logged_in();
 		$is_visible   = true;
+		$listing_id   = isset( $all_settings['posterno_visibility_logic_listing_id'] ) && ! empty( $all_settings['posterno_visibility_logic_listing_id'] ) ? absint( $all_settings['posterno_visibility_logic_listing_id'] ) : false;
 
 		if ( in_array( 'user', $settings, true ) && ! $is_logged_in ) {
 			$is_visible = false;
@@ -261,6 +274,24 @@ class Visibility {
 			} else {
 				$is_visible = false;
 			}
+		}
+
+		if ( in_array( 'listing_is_type', $settings, true ) ) {
+
+			$current_type = pno_get_listing_type( $listing_id );
+
+			if ( ! isset( $current_type->term_id ) ) {
+				return true;
+			}
+
+			$selected_types = isset( $all_settings['posterno_visibility_logic_listing_type'] ) && ! empty( $all_settings['posterno_visibility_logic_listing_type'] ) ? array_map( 'absint', $all_settings['posterno_visibility_logic_listing_type'] ) : array();
+
+			if ( in_array( $current_type->term_id, $selected_types, true ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+
 		}
 
 		/**
