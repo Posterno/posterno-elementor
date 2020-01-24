@@ -114,7 +114,7 @@ class Visibility {
 					'active' => true,
 				),
 				'label'       => esc_html__( 'Listing ID:', 'posterno-elementor' ),
-				'description' => esc_html__( 'Some visibility conditions are reserved for listings. Here you can specific to which listing it should apply. Select "Post ID" from the the dynamic menu to automatically retrieve the ID number of the current listing.' ),
+				'description' => esc_html__( 'Some visibility conditions are reserved for listings. Here you can specific to which listing it should apply. Select "Post ID" from the the dynamic menu to automatically retrieve the ID number of the current listing.', 'posterno-elementor' ),
 			)
 		);
 
@@ -140,25 +140,25 @@ class Visibility {
 	private function get_visibility_options() {
 
 		$options = array(
-			'user'             => esc_html__( 'User is logged in' ),
-			'guest'            => esc_html__( 'User is logged out' ),
-			'listing_author'   => esc_html__( 'User has submitted listings' ),
-			'listing_owner'    => esc_html__( 'User is owner of listing' ),
-			'listing_featured' => esc_html__( 'Listing is featured' ),
-			'listing_expired'  => esc_html__( 'Listing is expired' ),
-			'listing_is_type'  => esc_html__( 'Listing is of type' ),
+			'user'             => esc_html__( 'User is logged in', 'posterno-elementor' ),
+			'guest'            => esc_html__( 'User is logged out', 'posterno-elementor' ),
+			'listing_author'   => esc_html__( 'User has submitted listings', 'posterno-elementor' ),
+			'listing_owner'    => esc_html__( 'User is owner of listing', 'posterno-elementor' ),
+			'listing_featured' => esc_html__( 'Listing is featured', 'posterno-elementor' ),
+			'listing_expired'  => esc_html__( 'Listing is expired', 'posterno-elementor' ),
+			'listing_is_type'  => esc_html__( 'Listing is of type', 'posterno-elementor' ),
 		);
 
 		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
-			$options['listing_is_claimed'] = esc_html__( 'Listing is claimed' );
+			$options['listing_is_claimed'] = esc_html__( 'Listing is claimed', 'posterno-elementor' );
 		}
 
 		if ( class_exists( '\Posterno\Favourites\Plugin' ) ) {
-			$options['listing_is_fav'] = esc_html__( 'User has bookmarked listing' );
+			$options['listing_is_fav'] = esc_html__( 'User has bookmarked listing', 'posterno-elementor' );
 		}
 
 		if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
-			$options['user_reviewed_listing'] = esc_html__( 'User has reviewed listing' );
+			$options['user_reviewed_listing'] = esc_html__( 'User has reviewed listing', 'posterno-elementor' );
 		}
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );

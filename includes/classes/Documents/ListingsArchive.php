@@ -26,11 +26,11 @@ class ListingsArchive extends Archive {
 	 *
 	 * @param array $data I have no idea.
 	 */
-	public function __construct( array $data = [] ) {
+	public function __construct( array $data = array() ) {
 
 		parent::__construct( $data );
 
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 11 );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class ListingsArchive extends Archive {
 	 * @return string
 	 */
 	public static function get_title() {
-		return esc_html__( 'Listings archive' );
+		return esc_html__( 'Listings archive', 'posterno-elementor' );
 	}
 
 	/**
@@ -127,7 +127,7 @@ class ListingsArchive extends Archive {
 
 		$post_type_object = get_post_type_object( $post_type );
 
-		$post_type_archives[ 'post_type_archive/' . $post_type ] = $post_type_object->label . ' ' . esc_html__( 'Archive' );
+		$post_type_archives[ 'post_type_archive/' . $post_type ] = $post_type_object->label . ' ' . esc_html__( 'Archive', 'posterno-elementor' );
 
 		$post_type_taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
@@ -140,18 +140,18 @@ class ListingsArchive extends Archive {
 		);
 
 		foreach ( $post_type_taxonomies as $slug => $object ) {
-			$taxonomies[ 'taxonomy/' . $slug ] = $object->label . ' ' . esc_html__( 'Archive' );
+			$taxonomies[ 'taxonomy/' . $slug ] = $object->label . ' ' . esc_html__( 'Archive', 'posterno-elementor' );
 		}
 
 		$options = array(
-			'search' => esc_html__( 'Search results' ),
+			'search' => esc_html__( 'Search results', 'posterno-elementor' ),
 		);
 
 		$options += $taxonomies + $post_type_archives;
 
 		return array(
 			'archive' => array(
-				'label'   => esc_html__( 'Archive' ),
+				'label'   => esc_html__( 'Archive', 'posterno-elementor' ),
 				'options' => $options,
 			),
 		);
@@ -180,9 +180,9 @@ class ListingsArchive extends Archive {
 
 		$this->update_control(
 			'preview_type',
-			[
+			array(
 				'default' => 'post_type_archive/listings',
-			]
+			)
 		);
 	}
 
