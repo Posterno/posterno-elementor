@@ -149,6 +149,10 @@ class Visibility {
 			'listing_is_type'  => esc_html__( 'Listing is of type' ),
 		);
 
+		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
+			$options['listing_is_claimed'] = esc_html__( 'Listing is claimed' );
+		}
+
 		return apply_filters( 'pno_elementor_visibility_options', $options );
 
 	}
@@ -287,6 +291,16 @@ class Visibility {
 			$selected_types = isset( $all_settings['posterno_visibility_logic_listing_type'] ) && ! empty( $all_settings['posterno_visibility_logic_listing_type'] ) ? array_map( 'absint', $all_settings['posterno_visibility_logic_listing_type'] ) : array();
 
 			if ( in_array( $current_type->term_id, $selected_types, true ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+
+		}
+
+		if ( class_exists( '\Posterno\Claims\Plugin' ) && in_array( 'listing_is_claimed', $settings, true ) ) {
+
+			if ( pno_listing_is_claimed( $listing_id ) ) {
 				$is_visible = true;
 			} else {
 				$is_visible = false;
