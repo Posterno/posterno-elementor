@@ -106,16 +106,3 @@ function pno_elementor_purge_terms_cache( $term_id, $tt_id, $taxonomy ) {
 add_action( 'edited_term', 'pno_elementor_purge_terms_cache', 10, 3 );
 add_action( 'create_term', 'pno_elementor_purge_terms_cache', 10, 3 );
 add_action( 'delete_term', 'pno_elementor_purge_terms_cache', 10, 3 );
-
-/**
- * Register custom conditions for the elementor pro theme builder.
- *
- * @param object $manager builder manager.
- * @return void
- */
-function pno_elementor_register_builder_conditions( $manager ) {
-
-	$manager->get_condition( 'general' )->register_sub_condition( new \Posterno\Elementor\Conditions\Listings() );
-
-}
-add_action( 'elementor/theme/register_conditions', 'pno_elementor_register_builder_conditions' );
