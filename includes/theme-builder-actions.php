@@ -106,6 +106,9 @@ add_action(
 	}
 );
 
+/**
+ * Register documents for elementor pro.
+ */
 add_action(
 	'elementor/documents/register',
 	function( $manager ) {
