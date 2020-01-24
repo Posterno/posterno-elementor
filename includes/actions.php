@@ -11,6 +11,7 @@
 use Posterno\Elementor\Cache;
 use Posterno\Elementor\Elements\ListingCard;
 use Posterno\Elementor\Elements\ListingsQuery;
+use Posterno\Elementor\Elements\SocialLoginButtons;
 use Posterno\Elementor\Elements\TermsList;
 
 // Exit if accessed directly.
@@ -70,6 +71,10 @@ add_action(
 				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\RatingStars() );
 			}
 
+		}
+
+		if ( class_exists( '\Posterno\SocialLogin\Plugin' ) ) {
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new SocialLoginButtons() );
 		}
 
 	}
