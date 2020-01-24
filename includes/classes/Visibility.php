@@ -100,8 +100,20 @@ class Visibility {
 				'default'   => array(),
 				'multiple'  => true,
 				'condition' => array(
-					'posterno_visibility_enabled'      => 'yes',
+					'posterno_visibility_enabled' => 'yes',
 				),
+			)
+		);
+
+		$element->add_control(
+			'posterno_visibility_logic_listing_id',
+			array(
+				'type'    => Controls_Manager::NUMBER,
+				'dynamic' => array(
+					'active' => true,
+				),
+				'label'   => esc_html__( 'Listing ID:', 'posterno-elementor' ),
+				'description' => esc_html__( 'Some visibility conditions are reserved for listings. Here you can specific to which listing it should apply. Select "Post ID" from the the dynamic menu to automatically retrieve the ID number of the current listing.' )
 			)
 		);
 
@@ -115,8 +127,9 @@ class Visibility {
 	private function get_visibility_options() {
 
 		$options = array(
-			'user'  => esc_html__( 'User is logged in' ),
-			'guest' => esc_html__( 'User is logged out' ),
+			'user'             => esc_html__( 'User is logged in' ),
+			'guest'            => esc_html__( 'User is logged out' ),
+			'listing_featured' => esc_html__( 'Listing is featured' ),
 		);
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );
@@ -179,7 +192,9 @@ class Visibility {
 
 				$visible_settings = $settings['posterno_visibility_logic'];
 
-				return $this->get_processed_visibility( $visible_settings );
+				$listing_id = isset( $settings['posterno_visibility_logic_listing_id'] ) && ! empty( $settings['posterno_visibility_logic_listing_id'] ) ? absint( $settings['posterno_visibility_logic_listing_id'] ) : false;
+
+				return $this->get_processed_visibility( $visible_settings, $listing_id );
 
 			}
 
@@ -193,9 +208,10 @@ class Visibility {
 	 * Do the visibility logic based on the settings.
 	 *
 	 * @param array $settings settings list.
+	 * @param string|bool $listing_id the ID number of a listing to verify if needed.
 	 * @return bool
 	 */
-	private function get_processed_visibility( $settings ) {
+	private function get_processed_visibility( $settings, $listing_id = false ) {
 
 		$is_logged_in = is_user_logged_in();
 		$is_visible   = true;
@@ -209,6 +225,14 @@ class Visibility {
 				$is_visible = false;
 			} else {
 				$is_visible = true;
+			}
+		}
+
+		if ( in_array( 'listing_featured', $settings, true ) ) {
+			if ( pno_listing_is_featured( $listing_id ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
 			}
 		}
 
