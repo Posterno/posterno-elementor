@@ -88,16 +88,10 @@ class SocialLoginButtons extends Widget_Base {
 		$this->add_control(
 			'redirect',
 			array(
-				'label'         => esc_html__( 'Redirect', 'posterno-elementor' ),
-				'type'          => Controls_Manager::URL,
-				'show_external' => true,
-				'description'   => esc_html__( 'Optionally specify a custom redirect URL. Leave blank to use the redirect configured in your Posterno settings panel.' ),
-				'default'       => [
-					'url'         => '',
-					'is_external' => false,
-					'nofollow'    => false,
-				],
-				'dynamic'       => array(
+				'label'       => esc_html__( 'Redirect', 'posterno-elementor' ),
+				'type'        => Controls_Manager::URL,
+				'description' => esc_html__( 'Optionally specify a custom redirect URL. Leave blank to use the redirect configured in your Posterno settings panel.' ),
+				'dynamic'     => array(
 					'active' => true,
 				),
 			)
@@ -117,8 +111,14 @@ class SocialLoginButtons extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
+		$redirect = isset( $settings['redirect']['url'] ) && ! empty( $settings['redirect']['url'] ) ? $settings['redirect']['url'] : false;
+
 		\Posterno\SocialLogin\Plugin::instance()->templates
-			->set_template_data( $settings )
+			->set_template_data(
+				[
+					'redirect' => $redirect,
+				]
+			)
 			->get_template_part( 'social-login-buttons' );
 
 	}
