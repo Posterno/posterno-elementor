@@ -45,9 +45,9 @@ class ListingClaimed extends BaseTag {
 		$this->add_control(
 			'text',
 			array(
-				'label'   => esc_html__( 'Text' ),
+				'label'   => esc_html__( 'Text', 'posterno-elementor' ),
 				'type'    => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Verified' ),
+				'default' => esc_html__( 'Verified', 'posterno-elementor' ),
 			)
 		);
 	}

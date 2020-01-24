@@ -62,6 +62,8 @@ class Plugin {
 
 		self::$instance->templates = new Templates();
 
+		Visibility::get_instance();
+
 		// Return the instance.
 		return self::$instance;
 

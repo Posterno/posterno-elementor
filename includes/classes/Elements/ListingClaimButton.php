@@ -112,9 +112,9 @@ class ListingClaimButton extends Widget_Base {
 
 		\Posterno\Claims\Plugin::instance()->templates
 			->set_template_data(
-				[
+				array(
 					'listing_id' => isset( $settings['listing_id'] ) && ! empty( $settings['listing_id'] ) ? absint( $settings['listing_id'] ) : get_the_id(),
-				]
+				)
 			)
 			->get_template_part( 'claim-button' );
 
