@@ -10,6 +10,7 @@
 
 use Posterno\Elementor\Cache;
 use Posterno\Elementor\Elements\ListingCard;
+use Posterno\Elementor\Elements\ListingClaimButton;
 use Posterno\Elementor\Elements\ListingsQuery;
 use Posterno\Elementor\Elements\SocialLoginButtons;
 use Posterno\Elementor\Elements\TermsList;
@@ -75,6 +76,10 @@ add_action(
 
 		if ( class_exists( '\Posterno\SocialLogin\Plugin' ) ) {
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new SocialLoginButtons() );
+		}
+
+		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ListingClaimButton() );
 		}
 
 	}
