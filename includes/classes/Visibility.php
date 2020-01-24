@@ -132,6 +132,7 @@ class Visibility {
 			'listing_author' => esc_html__( 'User has submitted listings' ),
 			'listing_owner' => esc_html__( 'User is owner of listing' ),
 			'listing_featured' => esc_html__( 'Listing is featured' ),
+			'listing_expired' => esc_html__( 'Listing is expired' ),
 		);
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );
@@ -248,6 +249,14 @@ class Visibility {
 
 		if ( in_array( 'listing_owner', $settings, true ) ) {
 			if ( pno_is_user_owner_of_listing( get_current_user_id(), $listing_id ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+		}
+
+		if ( in_array( 'listing_expired', $settings, true ) ) {
+			if ( pno_is_listing_expired( $listing_id ) ) {
 				$is_visible = true;
 			} else {
 				$is_visible = false;
