@@ -129,6 +129,7 @@ class Visibility {
 		$options = array(
 			'user'             => esc_html__( 'User is logged in' ),
 			'guest'            => esc_html__( 'User is logged out' ),
+			'listing_author' => esc_html__( 'User has submitted listings' ),
 			'listing_featured' => esc_html__( 'Listing is featured' ),
 		);
 
@@ -230,6 +231,14 @@ class Visibility {
 
 		if ( in_array( 'listing_featured', $settings, true ) ) {
 			if ( pno_listing_is_featured( $listing_id ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+		}
+
+		if ( in_array( 'listing_author', $settings, true ) ) {
+			if ( pno_user_has_submitted_listings( get_current_user_id() ) ) {
 				$is_visible = true;
 			} else {
 				$is_visible = false;
