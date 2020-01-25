@@ -35,9 +35,9 @@ add_action(
 		);
 
 		$elements_manager->add_category(
-			'posterno_single',
+			'posterno_archive',
 			array(
-				'title' => esc_html__( 'Single listing', 'posterno-elementor' ),
+				'title' => esc_html__( 'Listings archive', 'posterno-elementor' ),
 				'icon'  => 'fa fa-plug',
 			)
 		);
@@ -72,6 +72,8 @@ add_action(
 			if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
 				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\RatingStars() );
 			}
+
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveMap() );
 
 		}
 
