@@ -97,7 +97,7 @@ class ListingsQuery extends Widget_Base {
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
-				'description' => esc_html__( 'Enable this option only when creating custom archive layouts.' )
+				'description'  => esc_html__( 'Enable this option only when creating custom archive layouts.' ),
 			)
 		);
 
@@ -128,7 +128,7 @@ class ListingsQuery extends Widget_Base {
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
-				'condition'   => array(
+				'condition'    => array(
 					'current_query' => '',
 				),
 			)
@@ -137,11 +137,11 @@ class ListingsQuery extends Widget_Base {
 		$this->add_control(
 			'posts_per_page',
 			array(
-				'label'   => esc_html__( 'Listings per page', 'posterno-elementor' ),
-				'type'    => Controls_Manager::NUMBER,
-				'step'    => 1,
-				'default' => 10,
-				'condition'   => array(
+				'label'     => esc_html__( 'Listings per page', 'posterno-elementor' ),
+				'type'      => Controls_Manager::NUMBER,
+				'step'      => 1,
+				'default'   => 10,
+				'condition' => array(
 					'current_query' => '',
 				),
 			)
@@ -156,7 +156,7 @@ class ListingsQuery extends Widget_Base {
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
-				'condition'   => array(
+				'condition'    => array(
 					'current_query' => '',
 				),
 			)
