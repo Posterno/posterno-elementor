@@ -1,6 +1,6 @@
 <?php
 /**
- * Registers the listings archive sorter element.
+ * Registers the listings archive featured image element.
  *
  * @package     posterno-elementor
  * @copyright   Copyright (c) 2020, Sematico LTD
@@ -17,9 +17,9 @@ use Elementor\Controls_Manager;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * The listings archive sorter element.
+ * The listings archive featured image element.
  */
-class ArchiveSorter extends Widget_Base {
+class ArchiveFeaturedImage extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -30,7 +30,7 @@ class ArchiveSorter extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'listings_archive_sorter';
+		return 'listings_archive_featured_image';
 	}
 
 	/**
@@ -42,7 +42,7 @@ class ArchiveSorter extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Archive sorter', 'posterno-elementor' );
+		return esc_html__( 'Archive featured image', 'posterno-elementor' );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class ArchiveSorter extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fa fa-sort';
+		return 'fa fa-image';
 	}
 
 	/**
@@ -108,7 +108,7 @@ class ArchiveSorter extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		posterno()->templates->get_template_part( 'listings/results', 'bar' );
+		posterno()->templates->get_template_part( 'listings/taxonomy', 'featured-image' );
 
 	}
 

@@ -42,7 +42,7 @@ class ArchiveMap extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Listings archive map', 'posterno-elementor' );
+		return esc_html__( 'Archive map', 'posterno-elementor' );
 	}
 
 	/**
