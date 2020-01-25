@@ -135,20 +135,7 @@ class SearchFacet extends Widget_Base {
 			return;
 		}
 
-		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-
-			echo esc_html( $this->get_title() );
-
-			posterno()->templates
-				->set_template_data(
-					array(
-						'type'    => 'info',
-						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.', 'posterno-elementor' ),
-					)
-				)
-				->get_template_part( 'message' );
-
-		} else {
+		if ( ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 
 			echo do_shortcode( '[pno-search-facet facet="' . absint( $settings['facet_id'] ) . '"]' );
 

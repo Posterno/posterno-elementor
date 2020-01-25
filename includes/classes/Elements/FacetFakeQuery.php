@@ -108,20 +108,7 @@ class FacetFakeQuery extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-
-			echo esc_html( $this->get_title() );
-
-			posterno()->templates
-				->set_template_data(
-					array(
-						'type'    => 'info',
-						'message' => esc_html__( 'This element does not have any visible output. Please refer to the documentation of the search forms plugin for more information.', 'posterno-elementor' ),
-					)
-				)
-				->get_template_part( 'message' );
-
-		} else {
+		if ( ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 
 			echo do_shortcode( '[pno-search-fakequery]' );
 

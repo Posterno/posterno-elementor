@@ -121,20 +121,7 @@ class FacetSearchSubmit extends Widget_Base {
 
 		$redirect_url = isset( $settings['redirect_url'] ) && ! empty( $settings['redirect_url'] ) ? esc_url( $settings['redirect_url'] ) : false;
 
-		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-
-			echo esc_html( $this->get_title() );
-
-			posterno()->templates
-				->set_template_data(
-					array(
-						'type'    => 'info',
-						'message' => esc_html__( 'Output of this element is visible only when not within the Elementor Editor.', 'posterno-elementor' ),
-					)
-				)
-				->get_template_part( 'message' );
-
-		} else {
+		if ( ! \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 
 			if ( $redirect_url ) {
 
@@ -152,6 +139,7 @@ class FacetSearchSubmit extends Widget_Base {
 					->get_template_part( 'message' );
 
 			}
+
 		}
 
 	}
