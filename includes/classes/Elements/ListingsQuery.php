@@ -88,6 +88,19 @@ class ListingsQuery extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'current_query',
+			array(
+				'label'        => esc_html__( 'Use current query', 'posterno-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'posterno-elementor' ),
+				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
+				'return_value' => 'yes',
+				'default'      => false,
+				'description' => esc_html__( 'Enable this option only when creating custom archive layouts.' )
+			)
+		);
+
 		foreach ( Helper::get_registered_taxonomies() as $slug => $name ) {
 
 			$this->add_control(
@@ -98,6 +111,9 @@ class ListingsQuery extends Widget_Base {
 					'multiple'    => true,
 					'options'     => Cache::get_cached_terms( $slug ),
 					'description' => esc_html__( 'Select one or more term to adjust the query.', 'posterno-elementor' ),
+					'condition'   => array(
+						'current_query' => '',
+					),
 				)
 			);
 
@@ -112,6 +128,9 @@ class ListingsQuery extends Widget_Base {
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
+				'condition'   => array(
+					'current_query' => '',
+				),
 			)
 		);
 
@@ -122,6 +141,9 @@ class ListingsQuery extends Widget_Base {
 				'type'    => Controls_Manager::NUMBER,
 				'step'    => 1,
 				'default' => 10,
+				'condition'   => array(
+					'current_query' => '',
+				),
 			)
 		);
 
@@ -134,6 +156,9 @@ class ListingsQuery extends Widget_Base {
 				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
 				'return_value' => 'yes',
 				'default'      => false,
+				'condition'   => array(
+					'current_query' => '',
+				),
 			)
 		);
 
@@ -149,6 +174,10 @@ class ListingsQuery extends Widget_Base {
 							'name'  => 'limit_by_id',
 							'value' => 'yes',
 						),
+						array(
+							'name'  => 'current_query',
+							'value' => '',
+						),
 					),
 				),
 				'description' => esc_html__( 'Enter one or more listing id number separated by a comma.', 'posterno-elementor' ),
@@ -162,6 +191,9 @@ class ListingsQuery extends Widget_Base {
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'ID numbers', 'posterno-elementor' ),
 				'description' => esc_html__( 'Enter one or more users ID numbers separated by a comma to limit listings by specific authors only.', 'posterno-elementor' ),
+				'condition'   => array(
+					'current_query' => '',
+				),
 			)
 		);
 
@@ -187,6 +219,9 @@ class ListingsQuery extends Widget_Base {
 				'description' => esc_html__( 'Optional string if you wish to filter the query arguments programmatically.', 'posterno-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
+				),
+				'condition'   => array(
+					'current_query' => '',
 				),
 			)
 		);

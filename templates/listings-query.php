@@ -77,6 +77,11 @@ if ( $specific_ids ) {
 	$args['post__in'] = array_map( 'trim', array_map( 'absint', $specific_ids ) );
 }
 
+// Override all previous args if the query is set to retrieve the current one.
+if ( $data->current_query === 'yes' ) {
+	$args = $GLOBALS['wp_query']->query_vars;
+}
+
 $i = '';
 
 /**
