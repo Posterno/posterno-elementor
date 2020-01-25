@@ -91,13 +91,14 @@ class ListingsQuery extends Widget_Base {
 		$this->add_control(
 			'current_query',
 			array(
-				'label'        => esc_html__( 'Use current query', 'posterno-elementor' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'posterno-elementor' ),
-				'label_off'    => esc_html__( 'No', 'posterno-elementor' ),
-				'return_value' => 'yes',
-				'default'      => false,
-				'description'  => esc_html__( 'Enable this option only when creating custom archive layouts.' ),
+				'label'       => esc_html__( 'Use current query', 'posterno-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => array(
+					'yes' => esc_html__( 'Yes' ),
+					'no'  => esc_html__( 'No' ),
+				),
+				'default'     => 'no',
+				'description' => esc_html__( 'Enable this option only when creating custom archive layouts.' ),
 			)
 		);
 
@@ -112,7 +113,7 @@ class ListingsQuery extends Widget_Base {
 					'options'     => Cache::get_cached_terms( $slug ),
 					'description' => esc_html__( 'Select one or more term to adjust the query.', 'posterno-elementor' ),
 					'condition'   => array(
-						'current_query' => '',
+						'current_query' => 'no',
 					),
 				)
 			);
@@ -129,7 +130,7 @@ class ListingsQuery extends Widget_Base {
 				'return_value' => 'yes',
 				'default'      => false,
 				'condition'    => array(
-					'current_query' => '',
+					'current_query' => 'no',
 				),
 			)
 		);
@@ -142,7 +143,7 @@ class ListingsQuery extends Widget_Base {
 				'step'      => 1,
 				'default'   => 10,
 				'condition' => array(
-					'current_query' => '',
+					'current_query' => 'no',
 				),
 			)
 		);
@@ -157,7 +158,7 @@ class ListingsQuery extends Widget_Base {
 				'return_value' => 'yes',
 				'default'      => false,
 				'condition'    => array(
-					'current_query' => '',
+					'current_query' => 'no',
 				),
 			)
 		);
@@ -176,7 +177,7 @@ class ListingsQuery extends Widget_Base {
 						),
 						array(
 							'name'  => 'current_query',
-							'value' => '',
+							'value' => 'no',
 						),
 					),
 				),
@@ -192,7 +193,7 @@ class ListingsQuery extends Widget_Base {
 				'placeholder' => esc_html__( 'ID numbers', 'posterno-elementor' ),
 				'description' => esc_html__( 'Enter one or more users ID numbers separated by a comma to limit listings by specific authors only.', 'posterno-elementor' ),
 				'condition'   => array(
-					'current_query' => '',
+					'current_query' => 'no',
 				),
 			)
 		);
@@ -221,7 +222,7 @@ class ListingsQuery extends Widget_Base {
 					'active' => true,
 				),
 				'condition'   => array(
-					'current_query' => '',
+					'current_query' => 'no',
 				),
 			)
 		);
