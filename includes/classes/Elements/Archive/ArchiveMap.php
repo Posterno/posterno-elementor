@@ -108,7 +108,11 @@ class ArchiveMap extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		print_r( $settings );
+		$provider = \Posterno\MapsProvider\Helper::get_current_provider();
+
+		if ( $provider === 'googlemaps' ) {
+			\Posterno\MapsProvider\Providers\GoogleMaps::taxonomy_map_markup( $GLOBALS['wp_query']->query_vars );
+		}
 
 	}
 
