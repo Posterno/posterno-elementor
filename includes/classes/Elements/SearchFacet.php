@@ -88,7 +88,7 @@ class SearchFacet extends Widget_Base {
 		$this->add_control(
 			'facet_id',
 			array(
-				'label'   => esc_html__( 'Facet ID Number', 'posterno-elementor' ),
+				'label'   => esc_html__( 'Search facet', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT2,
 				'options' => $this->get_facets(),
 			)
