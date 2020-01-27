@@ -112,6 +112,11 @@ class Listing extends Single {
 	 */
 	public function before_get_content() {
 
+		/**
+		 * Hook: triggers before the content of the single listing page is displayed.
+		 */
+		do_action( 'pno_before_single_listing' );
+
 		parent::before_get_content();
 
 	}
@@ -124,6 +129,11 @@ class Listing extends Single {
 	public function after_get_content() {
 
 		parent::after_get_content();
+
+		/**
+		 * Hook: triggers after the content of the single listing page is displayed.
+		 */
+		do_action( 'pno_after_single_listing' );
 
 	}
 
