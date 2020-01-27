@@ -27,10 +27,10 @@ class Listing extends Single {
 	 *
 	 * @param array $data I have no idea.
 	 */
-	public function __construct( array $data = [] ) {
+	public function __construct( array $data = array() ) {
 		parent::__construct( $data );
 
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 11 );
 	}
 
 	/**

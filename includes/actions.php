@@ -120,3 +120,20 @@ function pno_elementor_purge_terms_cache( $term_id, $tt_id, $taxonomy ) {
 add_action( 'edited_term', 'pno_elementor_purge_terms_cache', 10, 3 );
 add_action( 'create_term', 'pno_elementor_purge_terms_cache', 10, 3 );
 add_action( 'delete_term', 'pno_elementor_purge_terms_cache', 10, 3 );
+
+/**
+ * Purge fields cache when updating listings fields.
+ *
+ * @param string $post_id the id of the field being changed.
+ * @return void
+ */
+function pno_elementor_purge_listings_fields_cache( $post_id ) {
+
+	if ( 'pno_listings_fields' === get_post_type( $post_id ) ) {
+		Cache::purge_listings_fields_cache();
+	}
+
+}
+add_action( 'save_post', 'pno_elementor_purge_listings_fields_cache' );
+add_action( 'delete_post', 'pno_elementor_purge_listings_fields_cache' );
+add_action( 'trash_post', 'pno_elementor_purge_listings_fields_cache' );

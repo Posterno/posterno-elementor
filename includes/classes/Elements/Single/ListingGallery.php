@@ -119,10 +119,10 @@ class ListingGallery extends Widget_Base {
 		if ( ! empty( $gallery ) && is_array( $gallery ) ) {
 			posterno()->templates
 				->set_template_data(
-					[
+					array(
 						'items'          => $gallery,
 						'featured_image' => get_the_post_thumbnail_url( $listing_id, 'full' ),
-					]
+					)
 				)
 				->get_template_part( 'listings/gallery' );
 		}

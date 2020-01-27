@@ -83,4 +83,43 @@ class Helper {
 		return ( is_post_type_archive( 'listings' ) );
 	}
 
+	/**
+	 * Helper functionality to get string between two characters.
+	 *
+	 * @param string $string full string.
+	 * @param string $start the string delimeter.
+	 * @param string $end the string delimeter.
+	 * @return mixed
+	 */
+	public static function get_string_between( $string, $start, $end) {
+		$string = ' ' . $string;
+		$ini    = strpos( $string, $start );
+		if ($ini == 0) {
+			return '';
+		}
+		$ini += strlen( $start );
+		$len  = strpos( $string, $end, $ini ) - $ini;
+		return substr( $string, $ini, $len );
+	}
+
+	/**
+	 * Get the last part of a parsed field name from a dynamic tag.
+	 *
+	 * @param string $field field's name like field/metakey/type.
+	 * @return string
+	 */
+	public static function get_parsed_field_type( $field ) {
+		return basename( $field );
+	}
+
+	/**
+	 * Get the metakey from a parsed field name from a dynamic tag.
+	 *
+	 * @param string $field field's name like field/metakey/type.
+	 * @return string
+	 */
+	public static function get_parsed_field_meta( $field ) {
+		return self::get_string_between( $field, '/', '/' );
+	}
+
 }
