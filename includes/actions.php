@@ -77,10 +77,6 @@ add_action(
 		// Register elementor pro only widgets.
 		if ( class_exists( '\ElementorPro\Plugin' ) ) {
 
-			if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
-				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\RatingStars() );
-			}
-
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveMap() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveSorter() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveFeaturedImage() );
@@ -88,6 +84,11 @@ add_action(
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingGallery() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingMap() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingCustomField() );
+
+			if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
+				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\RatingStars() );
+				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingReviewsFilter() );
+			}
 
 		}
 
