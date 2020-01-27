@@ -112,6 +112,8 @@ class Listing extends Single {
 	 */
 	public function before_get_content() {
 
+		remove_all_filters( 'the_content' );
+
 		/**
 		 * Hook: triggers before the content of the single listing page is displayed.
 		 */
