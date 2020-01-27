@@ -84,42 +84,31 @@ class Helper {
 	}
 
 	/**
-	 * Helper functionality to get string between two characters.
+	 * Retrieve the type of field from the cached list based on it's key.
 	 *
-	 * @param string $string full string.
-	 * @param string $start the string delimeter.
-	 * @param string $end the string delimeter.
+	 * @param string $meta_key key.
 	 * @return mixed
 	 */
-	public static function get_string_between( $string, $start, $end) {
-		$string = ' ' . $string;
-		$ini    = strpos( $string, $start );
-		if ($ini == 0) {
-			return '';
-		}
-		$ini += strlen( $start );
-		$len  = strpos( $string, $end, $ini ) - $ini;
-		return substr( $string, $ini, $len );
+	public static function find_field_type( $meta_key ) {
+
+		$fields = Cache::get_listings_custom_fields();
+
+		return isset( $fields[ $meta_key ]['type'] ) && ! empty( $fields[ $meta_key ]['type'] ) ? $fields[ $meta_key ]['type'] : false;
+
 	}
 
 	/**
-	 * Get the last part of a parsed field name from a dynamic tag.
+	 * Retrieve the options of field from the cached list based on it's key.
 	 *
-	 * @param string $field field's name like field/metakey/type.
-	 * @return string
+	 * @param string $meta_key key.
+	 * @return mixed
 	 */
-	public static function get_parsed_field_type( $field ) {
-		return basename( $field );
-	}
+	public static function find_field_options( $meta_key ) {
 
-	/**
-	 * Get the metakey from a parsed field name from a dynamic tag.
-	 *
-	 * @param string $field field's name like field/metakey/type.
-	 * @return string
-	 */
-	public static function get_parsed_field_meta( $field ) {
-		return self::get_string_between( $field, '/', '/' );
+		$fields = Cache::get_listings_custom_fields();
+
+		return isset( $fields[ $meta_key ]['options'] ) && ! empty( $fields[ $meta_key ]['options'] ) ? $fields[ $meta_key ]['options'] : false;
+
 	}
 
 }

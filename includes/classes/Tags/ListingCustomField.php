@@ -55,13 +55,17 @@ class ListingCustomField extends BaseDataTag {
 	 */
 	protected function _register_controls() {
 
+		$fields = wp_list_pluck( Cache::get_listings_custom_fields(), 'name' );
+
+		unset( $fields['listing_social_media_profiles'] );
+
 		$this->add_control(
 			'custom_field',
 			array(
 				'label'   => esc_html__( 'Select custom field', 'posterno-elementor' ),
 				'type'    => \Elementor\Controls_Manager::SELECT2,
 				'default' => '',
-				'options' => Cache::get_listings_custom_fields(),
+				'options' => $fields,
 			)
 		);
 
@@ -75,11 +79,29 @@ class ListingCustomField extends BaseDataTag {
 	 */
 	public function get_value( array $options = array() ) {
 
-		$field  = $this->get_settings( 'custom_field' );
-		$output = false;
+		$meta_key   = $this->get_settings( 'custom_field' );
+		$output     = false;
+		$listing_id = get_the_id();
+		$field_type = Helper::find_field_type( $meta_key );
+		$options    = Helper::find_field_options( $meta_key );
 
-		$field_type = Helper::get_parsed_field_type( $field );
-		$metakey    = Helper::get_parsed_field_meta( $field );
+		if ( $field_type && $meta_key ) {
+
+			$output = get_post_meta( $listing_id, '_' . $meta_key, true );
+
+			if ( $meta_key === 'listing_social_media_profiles' ) {
+				$output = carbon_get_post_meta( $listing_id, 'listing_social_profiles' );
+			} elseif ( $meta_key === 'listing_email_address' ) {
+				$output = carbon_get_post_meta( $listing_id, 'listing_email' );
+			}
+
+			if ( ! $output ) {
+				return;
+			}
+
+			$output = pno_display_field_value( $field_type, $output, array( 'options' => $options ), true );
+
+		}
 
 		return $output;
 

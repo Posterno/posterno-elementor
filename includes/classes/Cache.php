@@ -154,7 +154,7 @@ class Cache {
 				$args = apply_filters(
 					'pno_elementor_cached_listings_fields_query_args',
 					array(
-						'number'                   => 100,
+						'number'                   => 300,
 						'listing_meta_key__not_in' => $not_needed,
 					)
 				);
@@ -168,7 +168,12 @@ class Cache {
 							continue;
 						}
 
-						$found_fields[ "field/{$field->getObjectMetaKey()}/{$field->getType()}" ] = $field->getTitle();
+						$found_fields[ $field->getObjectMetaKey() ] = array(
+							'name'    => $field->getTitle(),
+							'type'    => $field->getType(),
+							'options' => $field->getOptions(),
+						);
+
 					}
 				}
 
