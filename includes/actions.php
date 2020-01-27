@@ -85,6 +85,8 @@ add_action(
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveSorter() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveFeaturedImage() );
 
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingGallery() );
+
 		}
 
 		if ( class_exists( '\Posterno\SocialLogin\Plugin' ) ) {
