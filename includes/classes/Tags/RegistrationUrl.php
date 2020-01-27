@@ -1,6 +1,6 @@
 <?php
 /**
- * Logout url.
+ * Registration page url.
  *
  * @package     posterno-elementor
  * @copyright   Copyright (c) 2020, Sematico LTD
@@ -14,9 +14,9 @@ namespace Posterno\Elementor\Tags;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Get the logout url powered by posterno.
+ * Get the registration page url powered by posterno.
  */
-class LogoutUrl extends BaseDataTag {
+class RegistrationUrl extends BaseDataTag {
 
 	/**
 	 * Name of the tag.
@@ -24,7 +24,7 @@ class LogoutUrl extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'posterno-logout-url';
+		return 'posterno-registration-url';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class LogoutUrl extends BaseDataTag {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Logout URL', 'posterno-elementor' );
+		return esc_html__( 'Registration URL', 'posterno-elementor' );
 	}
 
 	/**
@@ -73,14 +73,14 @@ class LogoutUrl extends BaseDataTag {
 	 */
 	public function get_value( array $options = array() ) {
 
-		$logout   = wp_logout_url();
-		$redirect = $this->get_settings( 'redirect' );
+		$registration = get_permalink( pno_get_registration_page_id() );
+		$redirect     = $this->get_settings( 'redirect' );
 
 		if ( isset( $redirect['url'] ) && ! empty( $redirect['url'] ) ) {
-			$logout = add_query_arg( array( 'redirect_to' => esc_url( $redirect['url'] ) ), $logout );
+			$registration = add_query_arg( array( 'redirect_to' => esc_url( $redirect['url'] ) ), $registration );
 		}
 
-		return esc_url( $logout );
+		return esc_url( $registration );
 
 	}
 

@@ -20,6 +20,7 @@ use Posterno\Elementor\Tags\ListingReviewsOverallRating;
 use Posterno\Elementor\Tags\ListingReviewsTotal;
 use Posterno\Elementor\Tags\LoginUrl;
 use Posterno\Elementor\Tags\LogoutUrl;
+use Posterno\Elementor\Tags\RegistrationUrl;
 
 /**
  * Register a new group for listings dynamic tags.
@@ -52,6 +53,7 @@ add_action(
 
 		$dynamic_tags->register_tag( new LoginUrl() );
 		$dynamic_tags->register_tag( new LogoutUrl() );
+		$dynamic_tags->register_tag( new RegistrationUrl() );
 
 		if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
 			$dynamic_tags->register_tag( new ListingReviewsTotal() );
