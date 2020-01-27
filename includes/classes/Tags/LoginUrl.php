@@ -76,8 +76,8 @@ class LoginUrl extends BaseDataTag {
 		$login    = get_permalink( pno_get_login_page_id() );
 		$redirect = $this->get_settings( 'redirect' );
 
-		if ( ! empty( $redirect ) ) {
-			$login = add_query_arg( array( 'redirect_to' => esc_url( $redirect ) ), $login );
+		if ( isset( $redirect['url'] ) && ! empty( $redirect['url'] ) ) {
+			$login = add_query_arg( array( 'redirect_to' => esc_url( $redirect['url'] ) ), $login );
 		}
 
 		return esc_url( $login );
