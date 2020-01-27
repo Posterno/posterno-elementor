@@ -42,6 +42,14 @@ add_action(
 			)
 		);
 
+		$elements_manager->add_category(
+			'posterno_single',
+			array(
+				'title' => esc_html__( 'Listings single', 'posterno-elementor' ),
+				'icon'  => 'fa fa-plug',
+			)
+		);
+
 	}
 );
 
