@@ -10,6 +10,7 @@
 
 use Posterno\Elementor\Cache;
 use Posterno\Elementor\Conditions\Listings;
+use Posterno\Elementor\Documents\Listing;
 use Posterno\Elementor\Documents\ListingsArchive;
 use Posterno\Elementor\Helper;
 
@@ -115,6 +116,7 @@ add_action(
 	function( $manager ) {
 
 		$manager->register_document_type( 'listings-archive', ListingsArchive::get_class_full_name() );
+		$manager->register_document_type( 'listings', Listing::get_class_full_name() );
 
 	}
 );
