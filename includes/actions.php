@@ -86,6 +86,7 @@ add_action(
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Archive\ArchiveFeaturedImage() );
 
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingGallery() );
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingMap() );
 
 		}
 

@@ -84,7 +84,7 @@ class Listing extends Single {
 	public function get_container_attributes() {
 		$attributes = parent::get_container_attributes();
 
-		$attributes['class'] .= ' listing';
+		$attributes['class'] .= ' listing pno-single-listing-wrapper';
 
 		return $attributes;
 	}
