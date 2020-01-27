@@ -57,7 +57,7 @@ class ListingCustomField extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fa fa-map-marked-alt';
+		return 'fa fa-database';
 	}
 
 	/**
