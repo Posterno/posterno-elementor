@@ -46,6 +46,29 @@ class ListingAddress extends BaseDataTag {
 	}
 
 	/**
+	 * Register controls for the tag.
+	 *
+	 * @return void
+	 */
+	protected function _register_controls() {
+
+		$this->add_control(
+			'address_output',
+			array(
+				'label'   => esc_html__( 'Output control', 'posterno-elementor' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'address',
+				'options' => array(
+					'address'     => esc_html__( 'Address' ),
+					'lat'         => esc_html__( 'Latitude' ),
+					'lng'         => esc_html__( 'Longitude' ),
+					'coordinates' => esc_html__( 'Combined coordinates' ),
+				),
+			)
+		);
+	}
+
+	/**
 	 * Dynamically overwrite the value retrieved for the tag.
 	 *
 	 * @param array $options options injected.
@@ -54,6 +77,25 @@ class ListingAddress extends BaseDataTag {
 	public function get_value( array $options = array() ) {
 
 		$address = pno_get_listing_address( get_the_id() );
+		$output  = $this->get_settings( 'address_output' );
+
+		if ( $output === 'address' ) {
+
+			return isset( $address['address'] ) ? esc_html( $address['address'] ) : false;
+
+		} elseif ( $output === 'lat' ) {
+
+			return isset( $address['lat'] ) ? esc_html( $address['lat'] ) : false;
+
+		} elseif ( $output === 'lng' ) {
+
+			return isset( $address['lng'] ) ? esc_html( $address['lng'] ) : false;
+
+		} elseif ( $output === 'coordinates' ) {
+
+			return isset( $address['value'] ) ? esc_html( $address['value'] ) : false;
+
+		}
 
 		return isset( $address['address'] ) ? esc_html( $address['address'] ) : false;
 
