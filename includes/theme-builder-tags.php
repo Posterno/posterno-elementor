@@ -12,6 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 use ElementorPro\Plugin;
+use Posterno\Elementor\Tags\ListingAddress;
 use Posterno\Elementor\Tags\ListingClaimed;
 use Posterno\Elementor\Tags\ListingCustomField;
 use Posterno\Elementor\Tags\ListingExpiryDate;
@@ -54,6 +55,7 @@ add_action(
 		$dynamic_tags->register_tag( new ListingFeatured() );
 		$dynamic_tags->register_tag( new ListingExpiryDate() );
 		$dynamic_tags->register_tag( new ListingCustomField() );
+		$dynamic_tags->register_tag( new ListingAddress() );
 
 		$dynamic_tags->register_tag( new LoginUrl() );
 		$dynamic_tags->register_tag( new LogoutUrl() );
