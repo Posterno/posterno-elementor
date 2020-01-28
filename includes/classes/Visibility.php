@@ -338,6 +338,16 @@ class Visibility {
 
 		}
 
+		if ( class_exists( '\Posterno\Reviews\Plugin' ) && in_array( 'listing_has_reviews', $settings, true ) ) {
+
+			if ( absint( \Posterno\Reviews\Helper::get_total_reviews_for_listing( $listing_id ) ) > 0 ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+
+		}
+
 		if ( in_array( 'listing_featured_image', $settings, true ) ) {
 			if ( has_post_thumbnail( $listing_id ) ) {
 				$is_visible = true;
