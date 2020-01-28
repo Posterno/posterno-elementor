@@ -101,7 +101,24 @@ class Visibility {
 				'multiple'    => true,
 				'label_block' => true,
 				'condition'   => array(
+					'posterno_visibility_enabled'      => 'yes',
+					'posterno_visibility_logic_hidden' => array(),
+				),
+			)
+		);
+
+		$element->add_control(
+			'posterno_visibility_logic_hidden',
+			array(
+				'type'        => Controls_Manager::SELECT2,
+				'label'       => esc_html__( 'Hidden when:', 'posterno-elementor' ),
+				'options'     => $this->get_visibility_options(),
+				'default'     => array(),
+				'multiple'    => true,
+				'label_block' => true,
+				'condition'   => array(
 					'posterno_visibility_enabled' => 'yes',
+					'posterno_visibility_logic'   => array(),
 				),
 			)
 		);
@@ -140,13 +157,13 @@ class Visibility {
 	private function get_visibility_options() {
 
 		$options = array(
-			'user'             => esc_html__( 'User is logged in', 'posterno-elementor' ),
-			'guest'            => esc_html__( 'User is logged out', 'posterno-elementor' ),
-			'listing_author'   => esc_html__( 'User has submitted listings', 'posterno-elementor' ),
-			'listing_owner'    => esc_html__( 'User is owner of listing', 'posterno-elementor' ),
-			'listing_featured' => esc_html__( 'Listing is featured', 'posterno-elementor' ),
-			'listing_expired'  => esc_html__( 'Listing is expired', 'posterno-elementor' ),
-			'listing_is_type'  => esc_html__( 'Listing is of type', 'posterno-elementor' ),
+			'user'                   => esc_html__( 'User is logged in', 'posterno-elementor' ),
+			'guest'                  => esc_html__( 'User is logged out', 'posterno-elementor' ),
+			'listing_author'         => esc_html__( 'User has submitted listings', 'posterno-elementor' ),
+			'listing_owner'          => esc_html__( 'User is owner of listing', 'posterno-elementor' ),
+			'listing_featured'       => esc_html__( 'Listing is featured', 'posterno-elementor' ),
+			'listing_expired'        => esc_html__( 'Listing is expired', 'posterno-elementor' ),
+			'listing_is_type'        => esc_html__( 'Listing is of type', 'posterno-elementor' ),
 			'listing_featured_image' => esc_html__( 'Listing has featured image' ),
 		);
 
@@ -160,7 +177,7 @@ class Visibility {
 
 		if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
 			$options['user_reviewed_listing'] = esc_html__( 'User has reviewed listing', 'posterno-elementor' );
-			$options['listing_has_reviews'] = esc_html__( 'Listing has reviews', 'posterno-elementor' );
+			$options['listing_has_reviews']   = esc_html__( 'Listing has reviews', 'posterno-elementor' );
 		}
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );
@@ -219,11 +236,16 @@ class Visibility {
 
 		if ( $settings['posterno_visibility_enabled'] == 'yes' ) {
 
-			if ( ! empty( $settings['posterno_visibility_logic'] ) ) {
+			$visibility_methods = isset( $settings['posterno_visibility_logic'] ) && ! empty( $settings['posterno_visibility_logic'] ) ? $settings['posterno_visibility_logic'] : false;
+			$hidden_methods     = isset( $settings['posterno_visibility_logic_hidden'] ) && ! empty( $settings['posterno_visibility_logic_hidden'] ) ? $settings['posterno_visibility_logic_hidden'] : false;
 
-				$visibility_methods = $settings['posterno_visibility_logic'];
+			if ( $visibility_methods ) {
 
 				return $this->get_processed_visibility( $visibility_methods, $settings );
+
+			} elseif ( $hidden_methods ) {
+
+				return ! $this->get_processed_visibility( $hidden_methods, $settings );
 
 			}
 
