@@ -8,6 +8,9 @@
  * @since       1.0.0
  */
 
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
 use Posterno\Elementor\Cache;
 use Posterno\Elementor\Conditions\Listings;
 use Posterno\Elementor\Documents\Listing;
