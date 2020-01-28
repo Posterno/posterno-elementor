@@ -64,3 +64,27 @@ add_action(
 	},
 	100
 );
+
+/**
+ * Install addon's required data on plugin activation.
+ */
+register_activation_hook(
+	__FILE__,
+	function() {
+
+		$requirements_check = new \PosternoRequirements\Check(
+			array(
+				'title' => 'Posterno Elementor',
+				'file'  => __FILE__,
+				'pno'   => '1.2.6',
+			)
+		);
+
+		if ( $requirements_check->passes() ) {
+			$addon = Plugin::instance( __FILE__ );
+			$addon->install();
+		}
+		unset( $requirements_check );
+
+	}
+);

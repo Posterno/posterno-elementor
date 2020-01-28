@@ -166,6 +166,8 @@ class Plugin {
 			require_once PNO_ELEMENTOR_PLUGIN_DIR . 'includes/theme-builder-tags.php';
 		}
 
+		require_once PNO_ELEMENTOR_PLUGIN_DIR . 'includes/install.php';
+
 	}
 
 	/**
