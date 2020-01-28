@@ -136,9 +136,9 @@ class ListingCustomField extends Widget_Base {
 
 				posterno()->templates
 					->set_template_data(
-						[
+						array(
 							'networks' => $output,
-						]
+						)
 					)
 					->get_template_part( 'fields-output/social-networks-field' );
 

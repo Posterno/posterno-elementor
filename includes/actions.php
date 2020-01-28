@@ -84,6 +84,7 @@ add_action(
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingGallery() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingMap() );
 			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingCustomField() );
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\Single\ListingTerms() );
 
 			if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
 				\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \Posterno\Elementor\Elements\RatingStars() );
