@@ -57,7 +57,7 @@ class RegistrationUrl extends BaseDataTag {
 			array(
 				'label'       => esc_html__( 'Redirect url', 'posterno-elementor' ),
 				'type'        => \Elementor\Controls_Manager::URL,
-				'description' => esc_html__( 'Leave blank to use the default settings set in Posterno.' ),
+				'description' => esc_html__( 'Leave blank to use the default settings set in Posterno.', 'posterno-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),

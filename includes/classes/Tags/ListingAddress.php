@@ -59,10 +59,10 @@ class ListingAddress extends BaseDataTag {
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'address',
 				'options' => array(
-					'address'     => esc_html__( 'Address' ),
-					'lat'         => esc_html__( 'Latitude' ),
-					'lng'         => esc_html__( 'Longitude' ),
-					'coordinates' => esc_html__( 'Combined coordinates' ),
+					'address'     => esc_html__( 'Address', 'posterno-elementor' ),
+					'lat'         => esc_html__( 'Latitude', 'posterno-elementor' ),
+					'lng'         => esc_html__( 'Longitude', 'posterno-elementor' ),
+					'coordinates' => esc_html__( 'Combined coordinates', 'posterno-elementor' ),
 				),
 			)
 		);

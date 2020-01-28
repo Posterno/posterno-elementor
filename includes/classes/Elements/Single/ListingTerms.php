@@ -154,7 +154,7 @@ class ListingTerms extends Widget_Base {
 			array(
 				'label'       => esc_html__( 'Include', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Comma-separated string of term ids to include.' ),
+				'description' => esc_html__( 'Comma-separated string of term ids to include.', 'posterno-elementor' ),
 			)
 		);
 
@@ -163,7 +163,7 @@ class ListingTerms extends Widget_Base {
 			array(
 				'label'       => esc_html__( 'Exclude', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Comma-separated string of term ids to exclude. If the "include" option is not empty, the exclude option will be ignored.' ),
+				'description' => esc_html__( 'Comma-separated string of term ids to exclude. If the "include" option is not empty, the exclude option will be ignored.', 'posterno-elementor' ),
 			)
 		);
 
@@ -172,7 +172,7 @@ class ListingTerms extends Widget_Base {
 			array(
 				'label'       => esc_html__( 'Parent', 'posterno-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Parent term ID to retrieve direct-child terms of.' ),
+				'description' => esc_html__( 'Parent term ID to retrieve direct-child terms of.', 'posterno-elementor' ),
 			)
 		);
 
@@ -189,8 +189,8 @@ class ListingTerms extends Widget_Base {
 		$layouts = apply_filters(
 			'pno_elementor_single_terms_list_layouts',
 			array(
-				'vertical'   => esc_html__( 'Vertical' ),
-				'horizontal' => esc_html__( 'Horizontal' ),
+				'vertical'   => esc_html__( 'Vertical', 'posterno-elementor' ),
+				'horizontal' => esc_html__( 'Horizontal', 'posterno-elementor' ),
 			)
 		);
 
@@ -210,9 +210,9 @@ class ListingTerms extends Widget_Base {
 				'label'   => esc_html__( 'Icon layout', 'posterno-elementor' ),
 				'type'    => Controls_Manager::SELECT2,
 				'options' => array(
-					'disabled' => esc_html__( 'Disabled' ),
-					'custom'   => esc_html__( 'Custom icon' ),
-					'database' => esc_html__( 'Term icon' ),
+					'disabled' => esc_html__( 'Disabled', 'posterno-elementor' ),
+					'custom'   => esc_html__( 'Custom icon', 'posterno-elementor' ),
+					'database' => esc_html__( 'Term icon', 'posterno-elementor' ),
 				),
 				'default' => 'disabled',
 			)
@@ -221,7 +221,7 @@ class ListingTerms extends Widget_Base {
 		$this->add_control(
 			'custom_icon',
 			array(
-				'label'      => esc_html__( 'Custom icon' ),
+				'label'      => esc_html__( 'Custom icon', 'posterno-elementor' ),
 				'type'       => Controls_Manager::ICONS,
 				'default'    => array(
 					'value'   => 'fas fa-star',

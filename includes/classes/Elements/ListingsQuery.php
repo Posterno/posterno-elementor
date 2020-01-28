@@ -94,11 +94,11 @@ class ListingsQuery extends Widget_Base {
 				'label'       => esc_html__( 'Use current query', 'posterno-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => array(
-					'yes' => esc_html__( 'Yes' ),
-					'no'  => esc_html__( 'No' ),
+					'yes' => esc_html__( 'Yes', 'posterno-elementor' ),
+					'no'  => esc_html__( 'No', 'posterno-elementor' ),
 				),
 				'default'     => 'no',
-				'description' => esc_html__( 'Enable this option only when creating custom archive layouts.' ),
+				'description' => esc_html__( 'Enable this option only when creating custom archive layouts.', 'posterno-elementor' ),
 			)
 		);
 

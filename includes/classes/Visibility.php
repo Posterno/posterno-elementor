@@ -164,7 +164,7 @@ class Visibility {
 			'listing_featured'       => esc_html__( 'Listing is featured', 'posterno-elementor' ),
 			'listing_expired'        => esc_html__( 'Listing is expired', 'posterno-elementor' ),
 			'listing_is_type'        => esc_html__( 'Listing is of type', 'posterno-elementor' ),
-			'listing_featured_image' => esc_html__( 'Listing has featured image' ),
+			'listing_featured_image' => esc_html__( 'Listing has featured image', 'posterno-elementor' ),
 		);
 
 		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
