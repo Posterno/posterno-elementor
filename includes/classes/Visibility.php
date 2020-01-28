@@ -338,6 +338,14 @@ class Visibility {
 
 		}
 
+		if ( in_array( 'listing_featured_image', $settings, true ) ) {
+			if ( has_post_thumbnail( $listing_id ) ) {
+				$is_visible = true;
+			} else {
+				$is_visible = false;
+			}
+		}
+
 		/**
 		 * Filter: allow developers to add custom visibility logic functionality.
 		 *
