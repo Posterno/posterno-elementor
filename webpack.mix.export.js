@@ -15,22 +15,21 @@ const rimraf  = require( 'rimraf' );
 const fs      = require( 'fs' );
 
 // Folder name to export the files to.
-let exportPath = 'plugin';
+let exportPath = 'posterno-elementor';
 
 // Plugin root-level files to include.
 let files = [
-	'plugin.php',
-	'readme.txt'
+	'posterno-elementor.php',
+	'readme.txt',
+	'uninstall.php'
 ];
 
 // Folders to include.
 let folders = [
-	'app',
-	'dist',
-	'resources/lang',
-	'resources/js',
-	'resources/scss',
-	'vendor'
+	'vendor',
+	'templates',
+	'includes',
+	'languages',
 ];
 
 // Delete the previous export to start clean.
@@ -60,7 +59,39 @@ mix.then( () => {
 	let files = [
 		'mix-manifest.json',
 		`${exportPath}/vendor/bin`,
-	 	`${exportPath}/vendor/composer/installers`
+		`${exportPath}/vendor/composer/installers`,
+		`${exportPath}/vendor/composer/installers`,
+		`${exportPath}/dist/mix-manifest.json`,
+		`${exportPath}/dist/mix-js.map`,
+		`${exportPath}/dist/fonts`,
+		`${exportPath}/dist/svg`,
+		`${exportPath}/resources/admin/node_modules`,
+		`${exportPath}/resources/admin/public`,
+		`${exportPath}/resources/admin/src`,
+		`${exportPath}/resources/admin/.browserslistrc`,
+		`${exportPath}/resources/admin/.eslintrc.js`,
+		`${exportPath}/resources/admin/babel.config.js`,
+		`${exportPath}/resources/admin/package.json`,
+		`${exportPath}/resources/admin/postcss.config.js`,
+		`${exportPath}/resources/admin/vue.config.js`,
+		`${exportPath}/resources/admin/yarn.lock`,
+		`${exportPath}/resources/admin/.gitignore`,
+		`${exportPath}/resources/admin/dist/favicon.ico`,
+		`${exportPath}/resources/admin/dist/index.html`,
+		`${exportPath}/vendor/dealerdirect`,
+		`${exportPath}/vendor/phpcompatibility`,
+		`${exportPath}/vendor/squizlabs`,
+		`${exportPath}/vendor/wp-coding-standards`,
+		`${exportPath}/vendor/**/.git`,
+		`${exportPath}/vendor/**/.editorconfig`,
+		`${exportPath}/vendor/**/.gitignore`,
+		`${exportPath}/vendor/**/composer.json`,
+		`${exportPath}/vendor/**/composer.lock`,
+		`${exportPath}/vendor/**/LICENSE`,
+		`${exportPath}/vendor/**/phpcs.xml`,
+		`${exportPath}/vendor/**/readme.md`,
+		`${exportPath}/vendor/**/.gitattributes`,
+		`${exportPath}/dist/**/*.map`,
 	];
 
 	files.forEach( file => {
