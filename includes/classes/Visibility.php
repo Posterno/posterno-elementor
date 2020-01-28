@@ -95,7 +95,7 @@ class Visibility {
 			'posterno_visibility_logic',
 			array(
 				'type'        => Controls_Manager::SELECT2,
-				'label'       => esc_html__( 'Visible for:', 'posterno-elementor' ),
+				'label'       => esc_html__( 'Visible when:', 'posterno-elementor' ),
 				'options'     => $this->get_visibility_options(),
 				'default'     => array(),
 				'multiple'    => true,
