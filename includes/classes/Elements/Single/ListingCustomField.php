@@ -81,7 +81,7 @@ class ListingCustomField extends Widget_Base {
 	protected function _register_controls() {
 
 		$this->start_controls_section(
-			'faceted_settings',
+			'settings',
 			array(
 				'label' => __( 'Settings', 'posterno-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,

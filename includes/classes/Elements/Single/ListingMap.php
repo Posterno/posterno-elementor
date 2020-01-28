@@ -79,7 +79,7 @@ class ListingMap extends Widget_Base {
 	protected function _register_controls() {
 
 		$this->start_controls_section(
-			'faceted_settings',
+			'settings',
 			array(
 				'label' => __( 'Settings', 'posterno-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
@@ -91,7 +91,7 @@ class ListingMap extends Widget_Base {
 			array(
 				'label' => false,
 				'type'  => Controls_Manager::RAW_HTML,
-				'raw'   => esc_html__( 'This element does not have any settings. Please refer to the documentation of the search forms plugin for more information.', 'posterno-elementor' ),
+				'raw'   => esc_html__( 'This element does not have any settings.', 'posterno-elementor' ),
 			)
 		);
 
