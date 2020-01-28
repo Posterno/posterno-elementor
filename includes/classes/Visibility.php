@@ -147,6 +147,7 @@ class Visibility {
 			'listing_featured' => esc_html__( 'Listing is featured', 'posterno-elementor' ),
 			'listing_expired'  => esc_html__( 'Listing is expired', 'posterno-elementor' ),
 			'listing_is_type'  => esc_html__( 'Listing is of type', 'posterno-elementor' ),
+			'listing_featured_image' => esc_html__( 'Listing has featured image' ),
 		);
 
 		if ( class_exists( '\Posterno\Claims\Plugin' ) ) {
@@ -159,6 +160,7 @@ class Visibility {
 
 		if ( class_exists( '\Posterno\Reviews\Plugin' ) ) {
 			$options['user_reviewed_listing'] = esc_html__( 'User has reviewed listing', 'posterno-elementor' );
+			$options['listing_has_reviews'] = esc_html__( 'Listing has reviews', 'posterno-elementor' );
 		}
 
 		return apply_filters( 'pno_elementor_visibility_options', $options );
