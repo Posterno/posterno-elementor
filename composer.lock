@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f124fda884bc8614266790adb7110247",
+    "content-hash": "8da70ab8a14eb26c06e0f1c410cff0a3",
     "packages": [
         {
             "name": "composer/installers",
@@ -127,6 +127,48 @@
                 "zikula"
             ],
             "time": "2019-08-12T15:00:31+00:00"
+        },
+        {
+            "name": "posterno/addon-requirements-check",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Posterno/addon-requirements-check.git",
+                "reference": "ba36547cf8a3283d58076e407d66e1c6880bbcc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Posterno/addon-requirements-check/zipball/ba36547cf8a3283d58076e407d66e1c6880bbcc9",
+                "reference": "ba36547cf8a3283d58076e407d66e1c6880bbcc9",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "0.4.4",
+                "pressmodo/phpcs-config": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PosternoRequirements\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Posterno",
+                    "email": "hello@posterno.com"
+                }
+            ],
+            "description": "Simple drop-in library for Posterno addons to check for core plugin version requirements.",
+            "homepage": "https://posterno.com",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2019-06-24T09:42:11+00:00"
         }
     ],
     "packages-dev": [
