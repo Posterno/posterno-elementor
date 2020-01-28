@@ -49,7 +49,7 @@ add_action(
 			array(
 				'title' => 'Posterno Elementor',
 				'file'  => __FILE__,
-				'pno'   => '1.2.4',
+				'pno'   => '1.2.6',
 			)
 		);
 
