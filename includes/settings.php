@@ -21,8 +21,6 @@ add_filter(
 	'pno_options_panel_settings',
 	function( $settings ) {
 
-		$settings['listings_settings'][] = Field::make( 'separator', 'cardsettings', esc_html__( 'Cards layout', 'posterno-elementor' ) );
-
 		$types = pno_get_listings_types_for_association();
 
 		if ( ! empty( $types ) && is_array( $types ) ) {
