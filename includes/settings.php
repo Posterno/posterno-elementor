@@ -26,6 +26,9 @@ add_filter(
 		$types = pno_get_listings_types_for_association();
 
 		if ( ! empty( $types ) && is_array( $types ) ) {
+
+			$settings['listings_settings'][] = Field::make( 'separator', 'cardsettings', esc_html__( 'Cards layout', 'posterno-elementor' ) );
+
 			foreach ( $types as $type_id => $label ) {
 				foreach ( pno_get_listings_layout_available_options() as $layout_id => $layout_label ) {
 
