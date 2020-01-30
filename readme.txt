@@ -16,6 +16,26 @@ Visually build your listings directory website with Posterno and Elementor.
 
 This is a free addon for the [Posterno – Listings Directory & Classifieds plugin](https://wordpress.org/plugins/posterno/). You must download and install the [Posterno – Listings Directory & Classifieds plugin](https://wordpress.org/plugins/posterno/) before you can use this addon.
 
+= A completely customizable listings directory =
+
+Add powers to your page builder using our easy-to-use elements designed to help you build a listings directory website with WordPress.
+
+Our Elementor integration comes with 20+ custom elements specifically designed to help you build your listings directory in any way you want with no custom coding required.
+
+= Integrated with all our other addons =
+
+No need to remember shortcodes anymore! Our Elementor integration provides elements for all our [other extensions](https://posterno.com/extensions/).
+
+= More power with dynamic tags =
+
+We have added special integration with Elementor Pro and it's dynamic tags feature. Dynamic tags draw data from your website and they change dynamically according to the listing's page it’s on.
+
+They are incredibly powerful especially when using the theme builder to create custom single listing page layouts, archives pages and much more.
+
+= Your directory - your way! =
+
+We have extended the powerful theme builder provided by Elementor Pro! You can finally visually customize your WordPress listings directory including: single listing page, frontend dashboard sections, taxonomy archive pages and more!
+
 = Usage =
 
 Please read the online documentation [https://docs.posterno.com/category/678-elementor-integration](https://docs.posterno.com/category/678-elementor-integration) to learn how to setup this addon.
