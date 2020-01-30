@@ -80,7 +80,7 @@ class ListingCustomField extends BaseDataTag {
 	public function get_value( array $options = array() ) {
 
 		$meta_key   = $this->get_settings( 'custom_field' );
-		$output     = false;
+		$output     = '';
 		$listing_id = get_the_id();
 		$field_type = Helper::find_field_type( $meta_key );
 		$options    = Helper::find_field_options( $meta_key );

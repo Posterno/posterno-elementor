@@ -80,7 +80,7 @@ class ListingReviewsOverallRating extends BaseDataTag {
 		} elseif ( $total <= 0 && $fallback ) {
 			return wp_kses_post( $fallback );
 		} else {
-			return false;
+			return '';
 		}
 
 	}
