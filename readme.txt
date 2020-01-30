@@ -22,6 +22,8 @@ Add powers to your page builder using our easy-to-use elements designed to help 
 
 Our Elementor integration comes with 20+ custom elements specifically designed to help you build your listings directory in any way you want with no custom coding required.
 
+[Check the list of elements available →](https://posterno.com/extensions/elementor)
+
 = Integrated with all our other addons =
 
 No need to remember shortcodes anymore! Our Elementor integration provides elements for all our [other extensions](https://posterno.com/extensions/).
