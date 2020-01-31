@@ -1,0 +1,6 @@
+{
+  "plugin_slug": "posterno-elementor",
+  "deployment_folder": "posterno-elementor",
+  "deploy_assets": true,
+  "assets_folder": ".wordpress.org"
+}
