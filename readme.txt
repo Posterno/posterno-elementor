@@ -53,3 +53,9 @@ Before opening a [support topic](https://wordpress.org/support/plugin/posterno) 
 == Installation ==
 
 Please read our detailed documentation here [https://docs.posterno.com/category/678-elementor-integration](https://docs.posterno.com/category/678-elementor-integration)
+
+== Changelog ==
+
+= 1.0.1 28th April 2020 =
+
+- Fix: grid card layout not correctly identified when replacing the layout through custom card template.
