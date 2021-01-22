@@ -130,7 +130,7 @@ class Plugin {
 	private function setup_constants() {
 		// Plugin version.
 		if ( ! defined( 'PNO_ELEMENTOR_VERSION' ) ) {
-			define( 'PNO_ELEMENTOR_VERSION', '1.0.1' );
+			define( 'PNO_ELEMENTOR_VERSION', '1.1.0' );
 		}
 		// Plugin Root File.
 		if ( ! defined( 'PNO_ELEMENTOR_PLUGIN_FILE' ) ) {

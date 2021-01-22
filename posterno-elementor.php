@@ -7,7 +7,7 @@
  * Author URI:      https://posterno.com
  * Text Domain:     posterno-elementor
  * Domain Path:     /languages
- * Version:         1.0.1
+ * Version:         1.1.0
  *
  * Posterno Elementor is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
