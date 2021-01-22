@@ -16,6 +16,7 @@ use Posterno\Elementor\Conditions\Listings;
 use Posterno\Elementor\Documents\Listing;
 use Posterno\Elementor\Documents\ListingsArchive;
 use Posterno\Elementor\Helper;
+use Posterno\Elementor\Skins\PosternoSkin;
 
 /**
  * Display the custom theme builder sections for the dashboard pages.
@@ -134,3 +135,7 @@ add_action(
 
 	}
 );
+
+add_action( 'elementor/widget/archive-posts/skins_init', function( $widget ) {
+	$widget->add_skin( new PosternoSkin( $widget ) );
+} );
