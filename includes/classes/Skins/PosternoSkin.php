@@ -40,7 +40,7 @@ class PosternoSkin extends \ElementorPro\Modules\Posts\Skins\Skin_Base {
 	 * @return void
 	 */
 	public function get_title() {
-		return esc_html__( 'Listing card' );
+		return esc_html__( 'Listing card', 'posterno-elementor' );
 	}
 
 	/**

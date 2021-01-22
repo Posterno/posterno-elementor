@@ -4,7 +4,7 @@ Tags: elementor, directory, listings, listing, posterno
 Requires at least: 5.3
 Tested up to: 5.3
 Requires PHP: 5.6+
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -55,6 +55,11 @@ Before opening a [support topic](https://wordpress.org/support/plugin/posterno) 
 Please read our detailed documentation here [https://docs.posterno.com/category/678-elementor-integration](https://docs.posterno.com/category/678-elementor-integration)
 
 == Changelog ==
+
+= 1.1.0 22 January 2020 =
+
+- Deprecated: Listings query widget can no longer be used with Elementor Pro when building a custom taxonomy archive template. Please refer [to the documentation](https://docs.posterno.com/article/692-elementor-pro-custom-taxonomy-archive-page) for up to date info.
+- Added: "Listing card" skin to the Elementor Pro "Archive posts" element.
 
 = 1.0.1 28th April 2020 =
 
