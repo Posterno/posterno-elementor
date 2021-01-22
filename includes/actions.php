@@ -144,3 +144,17 @@ function pno_elementor_purge_listings_fields_cache( $post_id ) {
 add_action( 'save_post', 'pno_elementor_purge_listings_fields_cache' );
 add_action( 'delete_post', 'pno_elementor_purge_listings_fields_cache' );
 add_action( 'trash_post', 'pno_elementor_purge_listings_fields_cache' );
+
+add_filter( 'pno_should_override_taxonomy_template', function( $active ) {
+	if ( pno_get_option( 'elementor_disable_native_taxonomy' ) ) {
+		return false;
+	}
+	return $active;
+} );
+
+add_filter( 'pno_should_override_single_template', function( $active ) {
+	if ( pno_get_option( 'elementor_disable_native_single' ) ) {
+		return false;
+	}
+	return $active;
+} );

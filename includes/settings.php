@@ -38,6 +38,11 @@ add_filter(
 			}
 		}
 
+		$settings['listings_settings'][] = Field::make( 'separator', 'overridetheme', esc_html__( 'Theme templates override', 'posterno-elementor' ) );
+
+		$settings['listings_settings'][] = Field::make( 'checkbox', 'elementor_disable_native_taxonomy', 'Disable taxonomy templates override' );
+		$settings['listings_settings'][] = Field::make( 'checkbox', 'elementor_disable_native_single', 'Disable single templates override' );
+
 		return $settings;
 
 	}
