@@ -56,7 +56,7 @@ Please read our detailed documentation here [https://docs.posterno.com/category/
 
 == Changelog ==
 
-= 1.1.0 22 January 2020 =
+= 1.1.0 25 January 2020 =
 
 - Deprecated: Listings query widget can no longer be used with Elementor Pro when building a custom taxonomy archive template. Please refer [to the documentation](https://docs.posterno.com/article/692-elementor-pro-custom-taxonomy-archive-page) for up to date info.
 - Added: "Listing card" skin to the Elementor Pro "Archive posts" element.
