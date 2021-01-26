@@ -127,49 +127,32 @@ class PosternoSkin extends \ElementorPro\Modules\Posts\Skins\Skin_Base {
 			return;
 		}
 
+		$query->set( 'pno_search', true );
+		$query->set( 'is_listings_query', true );
+
 		$settings = $this->parent->get_settings();
 
 		?>
-		<div class="pno-block-listings-wrapper posterno-template">
-		<?php
+		<div class="posterno-template">
+			<div class="pno-block-listings-wrapper <?php if( $settings[ 'posterno_skin_layout_mode' ] === 'grid' ) : ?>row<?php endif; ?>">
+			<?php
 
-			// Start opening the grid's container.
-			if ( $settings[ 'posterno_skin_layout_mode' ] === 'grid' ) {
-				echo '<div class="card-deck">';
-			}
-
-			if ( $query->in_the_loop ) {
-				$this->current_permalink = get_permalink();
-
-				$this->render_post();
-				// Continue the loop of grids containers.
-				if ( $settings[ 'posterno_skin_layout_mode' ] === 'grid' ) {
-					$i++;
-					if ( $i % 3 == 0 ) {
-						echo '</div><div class="card-deck">';
-					}
-				}
-			} else {
-				while ( $query->have_posts() ) {
-					$query->the_post();
+				if ( $query->in_the_loop ) {
 					$this->current_permalink = get_permalink();
-					$this->render_post();
 
-					// Continue the loop of grids containers.
-					if ( $settings[ 'posterno_skin_layout_mode' ] === 'grid' ) {
-						$i++;
-						if ( $i % 3 == 0 ) {
-							echo '</div><div class="card-deck">';
-						}
+					$this->render_post();
+				} else {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+						$this->current_permalink = get_permalink();
+						$this->render_post();
 					}
 				}
-			}
+			?>
+			</div>
+		</div>
 
-			// Close grid's container.
-			if ( $settings[ 'posterno_skin_layout_mode' ] === 'grid' ) {
-				echo '</div>';
-			}
-
+		<?php
 			if ( $settings[ 'posterno_skin_pagination' ] === 'enabled' ) {
 				posterno()->templates
 					->set_template_data(
@@ -179,11 +162,10 @@ class PosternoSkin extends \ElementorPro\Modules\Posts\Skins\Skin_Base {
 					)
 					->get_template_part( 'listings/results', 'footer' );
 			}
-
-			wp_reset_postdata();
 		?>
-		</div>
 		<?php
+
+		wp_reset_postdata();
 	}
 
 }
