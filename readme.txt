@@ -61,6 +61,7 @@ Please read our detailed documentation here [https://docs.posterno.com/category/
 - Added: "Listing card" skin to the Elementor Pro "Archive posts" element.
 - Added: 2 new settings to control template overrides for taxonomy and single listing pages.
 - Tweak: updated markup of archive template loop powered by Elementor pro
+- Updated: language files
 - Deprecated: Listings query widget can no longer be used with Elementor Pro when building a custom taxonomy archive template. Please refer [to the documentation](https://docs.posterno.com/article/692-elementor-pro-custom-taxonomy-archive-page) for up to date info.
 
 = 1.0.1 28th April 2020 =
